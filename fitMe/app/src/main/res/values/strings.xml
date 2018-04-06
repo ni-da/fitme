@@ -7,10 +7,24 @@
 
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="date_label_set">Date: </string>
+
+
     <string name="date_button_set">Set Date</string>
     <string name="date_view_set">Date of birth</string>
-    <string name="date_selected">00/00/0000</string>
+    <string name="hint_date_selected">00/00/0000</string>
+    <string name="hint_dec">0.0</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="bloodpressure">Bloodpressure</string>
+    <string name="reset">Reset</string>
+    <string name="save">Save</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="f_radio">F</string>
+    <string name="m_radio">M</string>
+    <string name="imgView_content_desc">user\'s profile image.</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="textView_inapp_desc">Your Personalised Health Guide</string>
 
 
 </resources>

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dateView = (TextView) findViewById(R.id.textView3);
+        dateView = (TextView) findViewById(R.id.textView_dob);
         calendar = Calendar.getInstance();
 
         year = calendar.get(Calendar.YEAR);
@@ -132,5 +132,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void reset_all(View view) {
         editText_name.setText("");
+    }
+
+    public void sendForm(View view) {
+        Intent intent_main_screen = new Intent(this, Main2Activity.class);
+        intent_main_screen.putExtra("name", String.valueOf(editText_name));
+        startActivity(intent_main_screen);
     }
 }
