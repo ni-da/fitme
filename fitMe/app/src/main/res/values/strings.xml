@@ -25,6 +25,7 @@
     <string name="imgView_content_desc">user\'s profile image.</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="textView_inapp_desc">Your Personalised Health Guide</string>
+    <string name="logout">log out</string>
 
 
 </resources>
