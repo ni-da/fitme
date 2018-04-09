@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -16,23 +17,33 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.util.Calendar;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.fitMe.MESSAGE";
     private static final int CHOOSE_IMAGE = 101;
     Uri uriProfileImage;
+    String profileImageUrl;
 
     Toolbar toolbar;
     // objects for calender
@@ -47,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button button_save;
     private Button button_reset;
     private ImageView imageView_profile;
+    private ProgressBar progressBar_profile;
 
     // firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -101,20 +113,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         button_reset = (Button) findViewById(R.id.button_reset);
-        editText_name = findViewById(R.id.editText_name);
-
+        editText_name = (EditText) findViewById(R.id.editText_name);
         textView_email = (TextView) findViewById(R.id.textView_email);
         button_logout = (Button) findViewById(R.id.button_logout);
         button_save = (Button) findViewById(R.id.button_save);
         imageView_profile = (ImageView) findViewById(R.id.imageView_profile);
-
+        progressBar_profile = (ProgressBar) findViewById(R.id.progressBar_profile);
 
         textView_email.setText(user.getEmail());
 
         // attch lister to buttons
-        button_logout.setOnClickListener(this);
-        button_reset.setOnClickListener(this);
-        button_save.setOnClickListener(this);
+        button_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseAuth.signOut();
+                finish();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+        button_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        button_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveUserInfo();
+            }
+        });
         imageView_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,26 +237,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        char gender;
 //        double weight;
 //        double height;
+
+        // check if name is empty
+        if (name.isEmpty()) {
+            editText_name.setError("Name required");
+            editText_name.requestFocus();
+            return;
+        }
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null && profileImageUrl != null) {
+            UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(name)
+                    .setPhotoUri(Uri.parse(profileImageUrl)).build();
+
+            user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(MainActivity.this, "Profile updated", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+
+        }
         User userInfo = new User(name);
         //using uniqe id of loged in user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
 //        databaseReference.child(user.getUid()).setValue(userInfo);
         databaseReference.child(user.getUid()).setValue(userInfo);
         Toast.makeText(this, "Info saved", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == button_logout) {
-            firebaseAuth.signOut();
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));
-        }
-        if (view == button_save) {
-            saveUserInfo();
-        }
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -251,6 +290,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void uploadImageToFirebaseStorage() {
+        StorageReference profileImageRef =
+                FirebaseStorage.getInstance().getReference("profilepics/" + System.currentTimeMillis() + ".jpg");
+
+        if (uriProfileImage != null) {
+            // upload started
+            progressBar_profile.setVisibility(View.VISIBLE);
+            profileImageRef.putFile(uriProfileImage).
+                    addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // upload is completed
+                            progressBar_profile.setVisibility(View.GONE);
+                            profileImageUrl = taskSnapshot.getDownloadUrl().toString();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // upload is not completed,  there is some prob
+                    progressBar_profile.setVisibility(View.GONE);
+                    Toast.makeText(MainActivity.this,
+                            e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void showImageChooser() {
