@@ -3,7 +3,10 @@ package com.example.nidailyas.fitme;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +25,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_MESSAGE = "com.example.fitMe.MESSAGE";
+    private static final int CHOOSE_IMAGE = 101;
+    Uri uriProfileImage;
+
     Toolbar toolbar;
     // objects for calender
     private DatePicker datePicker;
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button button_logout;
     private Button button_save;
     private Button button_reset;
+    private ImageView imageView_profile;
 
     // firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -64,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //firebase
         firebaseAuth = FirebaseAuth.getInstance();
 
-        // databaseReference
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         //check if user is already loged in
         if (firebaseAuth.getCurrentUser() == null) {
@@ -75,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         //get loged in user
         FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        // databaseReference
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
         dateView = (TextView) findViewById(R.id.textView_dob);
@@ -97,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView_email = (TextView) findViewById(R.id.textView_email);
         button_logout = (Button) findViewById(R.id.button_logout);
         button_save = (Button) findViewById(R.id.button_save);
+        imageView_profile = (ImageView) findViewById(R.id.imageView_profile);
 
 
         textView_email.setText(user.getEmail());
@@ -105,6 +115,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_logout.setOnClickListener(this);
         button_reset.setOnClickListener(this);
         button_save.setOnClickListener(this);
+        imageView_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showImageChooser();
+            }
+        });
     }
 
     @Override
@@ -187,14 +203,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent_main_screen);
     }
 
-    private void saveUserInfo(){
+    private void saveUserInfo() {
         String name = editText_name.getText().toString().trim();
 //        Date dateOfBirth;
 //        char gender;
 //        double weight;
 //        double height;
-       User userInfo = new User(name);
-       //using uniqe id of loged in user
+        User userInfo = new User(name);
+        //using uniqe id of loged in user
         FirebaseUser user = firebaseAuth.getCurrentUser();
 //        databaseReference.child(user.getUid()).setValue(userInfo);
         databaseReference.child(user.getUid()).setValue(userInfo);
@@ -208,8 +224,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        if (view == button_save){
+        if (view == button_save) {
             saveUserInfo();
         }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CHOOSE_IMAGE &&
+                resultCode == RESULT_OK &&
+                data != null &&
+                data.getData() != null) {
+            uriProfileImage = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
+                        uriProfileImage);
+                imageView_profile.setImageBitmap(bitmap);
+                uploadImageToFirebaseStorage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void uploadImageToFirebaseStorage() {
+    }
+
+    private void showImageChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select profile image"),
+                CHOOSE_IMAGE);
     }
 }
