@@ -35,7 +35,15 @@
                 android:textAlignment="center"
                 android:textAppearance="?android:textAppearanceLarge"
                 />
-
+            <!--todo-->
+            <!--mag weg sws-->
+            <Button
+                android:id="@+id/button_save1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="sendForm"
+                android:text="@string/save" />
 
         </TableRow>
 
@@ -117,21 +125,13 @@
                     android:id="@+id/textView_dob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_date_selected"
+                    android:hint="Select a date"
                     android:paddingTop="15dp" />
 
                 <View
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/button_setDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:onClick="setDate"
-                    android:text="@string/date_button_set" />
 
             </LinearLayout>
 
@@ -165,13 +165,13 @@
                 <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/radioGroup_gender">
 
                     <RadioButton
                         android:id="@+id/radio_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
                         android:text="@string/f_radio" />
 
 
@@ -179,7 +179,6 @@
                         android:id="@+id/radio_male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
                         android:text="@string/m_radio" />
                 </RadioGroup>
             </LinearLayout>
@@ -276,7 +275,7 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:id="@+id/editText_bp_1"
+                    android:id="@+id/editText_bp_U"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_dec"
@@ -288,7 +287,7 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:id="@+id/editText_bp_2"
+                    android:id="@+id/editText_bp_L"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_dec"
@@ -350,7 +349,6 @@
                     android:text="@string/logout" />
 
             </LinearLayout>
-
 
         </TableRow>
 

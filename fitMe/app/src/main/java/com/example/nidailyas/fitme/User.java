@@ -5,27 +5,33 @@ import java.util.Date;
  */
 
 public class User {
-    public String name;
-    public Date dateOfBirth;
-    public char gender;
-    public double weight;
-    public double height;
+    String name;
+    Date dateOfBirth;
+    String gender;
+    double weight;
+    double height;
+    double begin_bp_upper;
+    double getBegin_bp_lower;
 
     public User() {
     }
 
-    public User(String name, Date dateOfBirth, char gender,
-                double weight, double height) {
+    public User(String name, Date dateOfBirth, String gender, double weight, double height, double begin_bp_upper, double getBegin_bp_lower) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.weight = weight;
         this.height = height;
+        this.begin_bp_upper = begin_bp_upper;
+        this.getBegin_bp_lower = getBegin_bp_lower;
     }
 
-    public User(String name) {
-        this.name = name;
+    public double getBegin_bp_upper() {
+        return begin_bp_upper;
+    }
 
+    public double getGetBegin_bp_lower() {
+        return getBegin_bp_lower;
     }
 
     public String getName() {
@@ -36,7 +42,7 @@ public class User {
         return dateOfBirth;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -46,25 +52,5 @@ public class User {
 
     public double getHeight() {
         return height;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
     }
 }
