@@ -21,7 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,10 +34,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.IOException;
 import java.util.Calendar;
-
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.fitMe.MESSAGE";
@@ -45,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
     Uri uriProfileImage;
     String profileImageUrl;
 
-    Toolbar toolbar;
+
     // objects for calender
     private DatePicker datePicker;
     private Calendar calendar;
     private int year, month, day;
     //view objects
+    private Toolbar toolbar;
     private TextView dateView;
     private EditText editText_name;
     private TextView textView_email;
@@ -60,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView_profile;
     private ProgressBar progressBar_profile;
 
-    // firebase auth object
+    //auth 1. Declare an instance of FirebaseAuth
     private FirebaseAuth firebaseAuth;
+
     private DatabaseReference databaseReference;
     private DatePickerDialog.OnDateSetListener myDateListener = new
             DatePickerDialog.OnDateSetListener() {
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //firebase
+        //auth 2. initialize the FirebaseAuth instance
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-        //check if user is already loged in
+        // auth 3. check to see if the user is currently signed in.
         if (firebaseAuth.getCurrentUser() == null) {
             // user is not loged in --> start direct profile activity
             finish();
@@ -95,30 +95,28 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         // databaseReference
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
 
-        dateView = (TextView) findViewById(R.id.textView_dob);
+        dateView = findViewById(R.id.textView_dob);
+        toolbar = findViewById(R.id.toolbar);
+        button_reset = findViewById(R.id.button_reset);
+        editText_name = findViewById(R.id.editText_name);
+        textView_email = findViewById(R.id.textView_email);
+        button_logout = findViewById(R.id.button_logout);
+        button_save = findViewById(R.id.button_save);
+        imageView_profile = findViewById(R.id.imageView_profile);
+        progressBar_profile = findViewById(R.id.progressBar_profile);
+
+
         calendar = Calendar.getInstance();
-
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-
         showDate(year, month + 1, day);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        button_reset = (Button) findViewById(R.id.button_reset);
-        editText_name = (EditText) findViewById(R.id.editText_name);
-        textView_email = (TextView) findViewById(R.id.textView_email);
-        button_logout = (Button) findViewById(R.id.button_logout);
-        button_save = (Button) findViewById(R.id.button_save);
-        imageView_profile = (ImageView) findViewById(R.id.imageView_profile);
-        progressBar_profile = (ProgressBar) findViewById(R.id.progressBar_profile);
 
         textView_email.setText(user.getEmail());
 
@@ -149,6 +147,40 @@ public class MainActivity extends AppCompatActivity {
                 showImageChooser();
             }
         });
+
+        loadUserInformation();
+    }
+
+    private void loadUserInformation() {
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            if (user.getPhotoUrl() != null) {
+                // load image by gvn url
+                // add glide lib -- in gradle files
+                Glide.with(this)
+                        .load(user.getPhotoUrl().toString())
+                        .into(imageView_profile);
+            }else {
+                imageView_profile.setImageResource(R.drawable.camera);
+            }
+            if (user.getDisplayName() != null) {
+                String name = user.getDisplayName();
+                editText_name.setText(user.getDisplayName());
+            }
+
+
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (firebaseAuth.getCurrentUser() == null) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 
     @Override
@@ -232,7 +264,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveUserInfo() {
-        String name = editText_name.getText().toString().trim();
+        Toast.makeText(this, "u clicked", Toast.LENGTH_SHORT).show();
+        String name = editText_name.getText().toString();
 //        Date dateOfBirth;
 //        char gender;
 //        double weight;
@@ -246,26 +279,30 @@ public class MainActivity extends AppCompatActivity {
         }
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null && profileImageUrl != null) {
-            UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(name)
-                    .setPhotoUri(Uri.parse(profileImageUrl)).build();
+            UserProfileChangeRequest profileChangeRequest =
+                    new UserProfileChangeRequest.Builder()
+                            .setDisplayName(name)
+                            .setPhotoUri(Uri.parse(profileImageUrl)).build();
 
-            user.updateProfile(profileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+            user.updateProfile(profileChangeRequest).
+                    addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Profile updated", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error.", Toast.LENGTH_SHORT).show();
                     }
 
                 }
             });
 
         }
-        User userInfo = new User(name);
-        //using uniqe id of loged in user
-//        databaseReference.child(user.getUid()).setValue(userInfo);
-        databaseReference.child(user.getUid()).setValue(userInfo);
-        Toast.makeText(this, "Info saved", Toast.LENGTH_SHORT).show();
+//        User userInfo = new User(name);
+//        //using uniqe id of loged in user
+//        String id = databaseReference.push().getKey();
+//        databaseReference.child(id).setValue(userInfo);
+//        Toast.makeText(this, "Info saved", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -302,6 +339,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // upload is completed
                             progressBar_profile.setVisibility(View.GONE);
+                            // Get a URL to the uploaded content
                             profileImageUrl = taskSnapshot.getDownloadUrl().toString();
                         }
                     }).addOnFailureListener(new OnFailureListener() {

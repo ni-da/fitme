@@ -5,7 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.nidailyas.fitme.RegisterActivity">
-
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <ProgressBar
+        android:id="@+id/progressBar_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,6 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="15dp"
         android:gravity="center_vertical">
+
 
         <TextView
             android:textAlignment="center"
@@ -47,4 +57,5 @@
             android:id="@+id/textView_signin"
             android:textAlignment="center"/>
     </LinearLayout>
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

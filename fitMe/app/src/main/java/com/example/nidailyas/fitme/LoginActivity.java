@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +24,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewSignUp;
+    private ProgressBar progressBarLogin;
 
-    private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -35,23 +36,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // firebase
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //check if user is already loged in
-        if (firebaseAuth.getCurrentUser() != null){
-            // user is loged in --> start direct profile activity
-            finish();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        }
+//        //check if user is already loged in
+//        if (firebaseAuth.getCurrentUser() != null){
+//            // user is loged in --> start direct profile activity
+//            finish();
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//        }
 
 
 
-        buttonSignIn = (Button) findViewById(R.id.button_signIn);
-        editTextEmail = (EditText) findViewById(R.id.editText_email);
-        editTextPassword = (EditText) findViewById(R.id.editText_password);
-        textViewSignUp = (TextView) findViewById(R.id.textView_signup);
-
-        //progressDialog
-        progressDialog = new ProgressDialog(this);
-
+        buttonSignIn = findViewById(R.id.button_signIn);
+        editTextEmail = findViewById(R.id.editText_email);
+        editTextPassword = findViewById(R.id.editText_password);
+        textViewSignUp = findViewById(R.id.textView_signup);
+        progressBarLogin = findViewById(R.id.progressBar_login);
 
 
         // attach listener
@@ -73,22 +71,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //if validations are ok
         // show progressbar
-        progressDialog.setMessage("Registering User ...");
-        progressDialog.show();
+        progressBarLogin.setVisibility(View.VISIBLE);
 
         firebaseAuth.signInWithEmailAndPassword(email, password).
                 addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
+                        progressBarLogin.setVisibility(View.GONE);
                         if (task.isSuccessful()){
                             // start the profile activity
                             finish();
+
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }
                     }
                 });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(firebaseAuth.getCurrentUser() != null){
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
+    }
+
     @Override
     public void onClick(View view) {
         if(view == buttonSignIn){
