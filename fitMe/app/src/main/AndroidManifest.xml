@@ -35,7 +35,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".StartActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".WeightActivity"></activity>
+        <activity android:name=".WeightActivity" />
+        <activity android:name=".PlanningActivity"></activity>
     </application>
 
 </manifest>

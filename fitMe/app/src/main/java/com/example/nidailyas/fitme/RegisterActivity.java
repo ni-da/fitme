@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if (firebaseAuth.getCurrentUser() != null) {
             // user is loged in --> start direct profile activity
             finish();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), Main2Activity.class));
         }
 
 

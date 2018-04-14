@@ -41,8 +41,8 @@ public class taskAdapter extends RecyclerView.Adapter<taskAdapter.tasksViewHolde
 
         public tasksViewHolder(View itemViem){
             super(itemViem);
-            imgIcon = (ImageView) itemViem.findViewById(R.id.imagIcon);
-            txtTitle = (TextView) itemViem.findViewById(R.id.txtTitle);
+            imgIcon = itemViem.findViewById(R.id.imagIcon);
+            txtTitle = itemViem.findViewById(R.id.txtTitle);
         }
     }
 }

@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.nidailyas.fitme.MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?android:attr/actionBarSize"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>-->
 
     <TableLayout
         android:id="@+id/tableLayout1"
@@ -37,13 +37,13 @@
                 />
             <!--todo-->
             <!--mag weg sws-->
-            <Button
-                android:id="@+id/button_save1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="sendForm"
-                android:text="@string/save" />
+            <!--<Button-->
+                <!--android:id="@+id/button_save1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:onClick="sendForm"-->
+                <!--android:text="@string/save" />-->
 
         </TableRow>
 
@@ -62,10 +62,10 @@
                     android:hint="@string/name"
                     android:inputType="text" />
 
-                <View
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                <!--<View-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1" />-->
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
