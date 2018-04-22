@@ -3,6 +3,7 @@
     package="com.example.nidailyas.fitme">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_ALARM"/>
 
     <application
         android:allowBackup="true"
@@ -36,7 +37,10 @@
         <activity android:name=".StartActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".WeightActivity" />
-        <activity android:name=".PlanningActivity"></activity>
+        <activity android:name=".PlanningActivity"/>
+        <activity android:name=".ExecuteHabitActivity"/>
+        <receiver android:name=".Notification_reciever"/>
+
     </application>
 
 </manifest>

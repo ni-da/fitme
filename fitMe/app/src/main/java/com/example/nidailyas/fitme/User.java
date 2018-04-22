@@ -46,72 +46,50 @@ public class User {
         return profileImageUrl;
     }
 
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
     public String getUserId() {
         return userId;
-    }
-
-    public Long getScore() {
-        return score;
-    }
-
-    public String getPlanningId() {
-        return planningId;
-    }
-
-    public String getLevelId() {
-        return levelId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public void setBegin_bp_upper(double begin_bp_upper) {
-        this.begin_bp_upper = begin_bp_upper;
-    }
-
-    public void setBegin_bp_lower(double begin_bp_lower) {
-        this.begin_bp_lower = begin_bp_lower;
+    public Long getScore() {
+        return score;
     }
 
     public void setScore(Long score) {
         this.score = score;
     }
 
+    public String getPlanningId() {
+        return planningId;
+    }
+
     public void setPlanningId(String planningId) {
         this.planningId = planningId;
+    }
+
+    public String getLevelId() {
+        return levelId;
     }
 
     public void setLevelId(String levelId) {
         this.levelId = levelId;
     }
 
-    public void setProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
+    public String getName() {
+        if (this.name != null) {
+            return name;
+        } else return "";
     }
 
-    public String getName() {
-        return name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDateOfBirth() {
@@ -119,23 +97,50 @@ public class User {
         return dateStr;
     }
 
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public String getGender() {
-        return gender;
+        if (this.gender != null) {
+            return gender;
+        } else return "";
+
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public double getWeight() {
         return weight;
     }
 
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
     public double getHeight() {
         return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
     }
 
     public double getBegin_bp_upper() {
         return begin_bp_upper;
     }
 
+    public void setBegin_bp_upper(double begin_bp_upper) {
+        this.begin_bp_upper = begin_bp_upper;
+    }
+
     public double getBegin_bp_lower() {
         return begin_bp_lower;
+    }
+
+    public void setBegin_bp_lower(double begin_bp_lower) {
+        this.begin_bp_lower = begin_bp_lower;
     }
 }

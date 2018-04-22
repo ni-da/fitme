@@ -1,7 +1,10 @@
 package com.example.nidailyas.fitme;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +17,8 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
 
 public class PlanningActivity extends AppCompatActivity {
     Spinner spinner_habits;
@@ -79,7 +84,28 @@ public class PlanningActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.button_notify).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerNotification();
+            }
+        });
 
+
+    }
+
+    private void registerNotification() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 00);
+        calendar.set(Calendar.MINUTE, 25);
+        calendar.set(Calendar.SECOND, 30);
+
+        Intent intent = new Intent(getApplicationContext(), Notification_reciever.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     private void addHabitToDb() {

@@ -53,12 +53,36 @@
             android:inputType="number"
             tools:layout_editor_absoluteX="157dp"
             tools:layout_editor_absoluteY="140dp" />
+        <TextView
+            android:id="@+id/textView_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pick a time!"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:layout_gravity="center"
+            android:id="@+id/editText_habitTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="0"
+            android:inputType="number"
+            tools:layout_editor_absoluteX="157dp"
+            tools:layout_editor_absoluteY="140dp" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Save"
             android:id="@+id/button_saveHabit"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Send notification"
+            android:id="@+id/button_notify"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

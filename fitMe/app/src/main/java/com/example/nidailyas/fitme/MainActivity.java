@@ -227,30 +227,30 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
-                                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
-                                    User user = dataSnapshot.getValue(User.class);
-                                    editText_name.setText(user.getName());
-                                    editText_weight.setText(Double.toString(user.getWeight()));
-                                    editText_height.setText(Double.toString(user.getHeight()));
-                                    editText_bp_L.setText(Double.toString(user.getBegin_bp_lower()));
-                                    editText_bp_U.setText(Double.toString(user.getBegin_bp_upper()));
-                                    dateView.setText(user.getDateOfBirth());
-                                    // setting up gender radios
-                                    if (user.getGender().equals("M")) {
-                                        radioGroup_gender.check(R.id.radio_male);
-                                    } else if (user.getGender().equals("F")) {
-                                        radioGroup_gender.check(R.id.radio_female);
-                                    }
-
-                                    if (user.getProfileImageUrl() != null) {
-                                        Glide.with(MainActivity.this)
-                                                .load(user.getProfileImageUrl()).
-                                                into(imageView_profile);
-                                    } else {
-                                        imageView_profile.setImageResource(R.drawable.camera);
-                                    }
-
+//                                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                                User user = dataSnapshot.getValue(User.class);
+                                editText_name.setText(user.getName());
+                                editText_weight.setText(Double.toString(user.getWeight()));
+                                editText_height.setText(Double.toString(user.getHeight()));
+                                editText_bp_L.setText(Double.toString(user.getBegin_bp_lower()));
+                                editText_bp_U.setText(Double.toString(user.getBegin_bp_upper()));
+                                dateView.setText(user.getDateOfBirth());
+                                // setting up gender radios
+                                if (user.getGender().equals("M")) {
+                                    radioGroup_gender.check(R.id.radio_male);
+                                } else if (user.getGender().equals("F")) {
+                                    radioGroup_gender.check(R.id.radio_female);
                                 }
+
+                                if (user.getProfileImageUrl() != null) {
+                                    Glide.with(MainActivity.this)
+                                            .load(user.getProfileImageUrl()).
+                                            into(imageView_profile);
+                                } else {
+                                    imageView_profile.setImageResource(R.drawable.camera);
+                                }
+
+//                                }
                             }
                         }
 
