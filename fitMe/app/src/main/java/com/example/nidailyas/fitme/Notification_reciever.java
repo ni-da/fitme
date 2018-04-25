@@ -19,7 +19,7 @@ public class Notification_reciever extends BroadcastReceiver{
 
         PendingIntent pendingIntent = PendingIntent.getActivity
                 (context, 100, executeHabitIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "DEFAULT_CHANNEL_ID")
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(android.R.drawable.arrow_up_float)
                 .setContentTitle("notification Title")
