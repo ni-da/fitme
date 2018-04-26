@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SavingDummyData">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_addLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add level" />
+
+
+    <Button
+        android:id="@+id/button_addHabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add habit" />
+    <Button
+        android:id="@+id/button_addRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Record" />
+    <Button
+        android:id="@+id/button_addHabitFrequencyTiming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Habit Frequency Timing" />
+    <Button
+        android:id="@+id/button_addPlanning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Planning" />
+</LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -160,6 +160,13 @@
             android:layout_marginTop="68dp"
             android:background="#c0c0c0"
             android:src="@drawable/settings" />
+
+        <Button
+            android:id="@+id/button_addDummyData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add dummy data" />
+
     </LinearLayout>
 
 

@@ -34,6 +34,12 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), PlanningActivity.class));
             }
         });
+        findViewById(R.id.button_addDummyData).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), SavingDummyData.class));
+            }
+        });
     }
 
 }

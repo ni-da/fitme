@@ -2,6 +2,7 @@ package com.example.nidailyas.fitme;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +28,8 @@ public class PlanningActivity extends AppCompatActivity {
     EditText getEditText_habitFrequency;
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
+    TimePicker timePicker;
+    int notifyHour, notifyMin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,10 @@ public class PlanningActivity extends AppCompatActivity {
         spinner_habits = findViewById(R.id.spinner_habits);
         editText_habitName = findViewById(R.id.editText_habitName);
         getEditText_habitFrequency = findViewById(R.id.editText_habitFrequency);
+
+        timePicker = findViewById(R.id.timePicker1);
+        notifyHour = timePicker.getCurrentHour();
+        notifyMin = timePicker.getCurrentMinute();
 
         final String[] languages = {"C++", "C#", "PYTHON", "Add new habit"};
 //        setAdapter(new taskAdapter(languages));
@@ -87,7 +95,7 @@ public class PlanningActivity extends AppCompatActivity {
         findViewById(R.id.button_notify).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerNotification();
+                new HabitNotification().registerNotification(notifyHour, notifyMin, getApplicationContext());
             }
         });
 
@@ -125,5 +133,9 @@ public class PlanningActivity extends AppCompatActivity {
             editText_habitName.setError("Name required");
             editText_habitName.requestFocus();
         }
+    }
+
+    private Context getContext() {
+        return this.getContext();
     }
 }

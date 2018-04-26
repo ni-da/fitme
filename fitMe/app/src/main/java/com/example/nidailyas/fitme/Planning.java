@@ -1,22 +1,23 @@
 package com.example.nidailyas.fitme;
 
+import java.util.ArrayList;
+
 public class Planning {
     String planningId; // PK
-    Habit[] habits; //habitFrequencyId's
-
+    ArrayList<String> habitFrequencies = new ArrayList<String>();
     public Planning() {
     }
 
-    public Planning(String planningId, Habit[] habits) {
+    public Planning(String planningId, ArrayList<String> habitFrequencies) {
         this.planningId = planningId;
-        this.habits = habits;
+        this.habitFrequencies = habitFrequencies;
     }
 
     public String getPlanningId() {
         return planningId;
     }
 
-    public Habit[] getHabits() {
-        return habits;
+    public ArrayList<String> getHabitFrequencies() {
+        return habitFrequencies;
     }
 }
