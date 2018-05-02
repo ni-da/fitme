@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,7 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class PlanningActivity extends AppCompatActivity {
     Spinner spinner_habits;
@@ -30,11 +31,12 @@ public class PlanningActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     TimePicker timePicker;
     int notifyHour, notifyMin;
-
+    List<String> habitNamesList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning);
+        habitNamesList = new ArrayList<>();
         firebaseAuth = FirebaseAuth.getInstance();
 
         // auth 3. check to see if the user is currently signed in.
@@ -53,15 +55,9 @@ public class PlanningActivity extends AppCompatActivity {
         notifyHour = timePicker.getCurrentHour();
         notifyMin = timePicker.getCurrentMinute();
 
-        final String[] languages = {"C++", "C#", "PYTHON", "Add new habit"};
-//        setAdapter(new taskAdapter(languages));
-//        ArrayAdapter <String> habitsAdapter = new ArrayAdapter
-//                <String>(PlanningActivity.this,
-//                android.R.layout.simple_list_item_1,
-//                getResources().getStringArray(R.array.habit_names));
 
         ArrayAdapter<String> habitsAdapter = new ArrayAdapter<String>(PlanningActivity.this,
-                android.R.layout.simple_spinner_dropdown_item, languages);
+                android.R.layout.simple_spinner_dropdown_item, new HabitManager().getAllHabitNames());
 
         habitsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_habits.setAdapter(habitsAdapter);
@@ -70,7 +66,7 @@ public class PlanningActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(PlanningActivity.this, spinner_habits.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                if (spinner_habits.getSelectedItem().toString() == languages[languages.length - 1]) {
+                if (spinner_habits.getSelectedItem().toString() == new HabitManager().getAllHabitNames().get(new HabitManager().getAllHabitNames().size()-1)){
 //                    add_habit_content
                     findViewById(R.id.add_habit_content).setVisibility(View.VISIBLE);
                 } else {

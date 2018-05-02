@@ -65,11 +65,12 @@ public class SavingDummyData extends AppCompatActivity {
     }
 
     public void addHabit() {
-        DatabaseReference databaseReference_habits;
-        databaseReference_habits = FirebaseDatabase.getInstance().getReference("habits");
-        String habitId = databaseReference_habits.push().getKey(); //id
-        Habit habit = new Habit(habitId, "Run", "Run for almost 20 minuts.");
-        databaseReference_habits.child(habitId).setValue(habit);
+//        DatabaseReference databaseReference_habits;
+//        databaseReference_habits = FirebaseDatabase.getInstance().getReference("habits");
+//        String habitId = databaseReference_habits.push().getKey(); //id
+//        Habit habit = new Habit(habitId, "Run", "Run for almost 20 minuts.");
+//        databaseReference_habits.child(habitId).setValue(habit);
+        new HabitManager().addHabitToDb();
         toast();
     }
 
@@ -91,13 +92,13 @@ public class SavingDummyData extends AppCompatActivity {
         String habitFrequencyTimingId = databaseReference_HabitFrequencyTimings.push().getKey();
         HabitFrequencyTiming habitFrequencyTiming = new HabitFrequencyTiming(habitFrequencyTimingId,
                 times,
-                "-LB1j59qXHIOtCWZOxn9");
+                "-LB1kYrTXal7bwMkw8or");
         databaseReference_HabitFrequencyTimings.child(habitFrequencyTimingId).setValue(habitFrequencyTiming);
         toast();
     }
     public void addPlanning() {
         ArrayList<String> habitFrequencyTimings = new ArrayList<String>();
-        habitFrequencyTimings.add("-LB206TMPiQUrr-BJC15");
+        habitFrequencyTimings.add("-LBSt6H9SHYau4eJjBfe");
 
         DatabaseReference databaseReference_plannings;
         databaseReference_plannings = FirebaseDatabase.getInstance().getReference("plannings");
