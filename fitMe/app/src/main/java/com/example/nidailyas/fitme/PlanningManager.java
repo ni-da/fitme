@@ -20,8 +20,6 @@ public class PlanningManager {
         databaseReference_plannings.child(planningId).setValue(planning);
     }
     public void updatePlanning(final String habitFrequency){
-
-
         DatabaseReference databaseReferenceUser = FirebaseDatabase.getInstance().getReference("users");
         databaseReferenceUser.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override

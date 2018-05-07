@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nidailyas.fitme.Main2Activity">
+    tools:context="com.example.nidailyas.fitme.Main2Activity"
+    android:id="@+id/activity_main2">
 
-    <include layout="@layout/header_main2" />
-    <include layout="@layout/content_main2" />
+    <include android:id="@+id/header_main2" layout="@layout/header_main2" />
+    <include android:id="@+id/content_main2" layout="@layout/content_main2" />
 
 
 </android.support.design.widget.CoordinatorLayout>

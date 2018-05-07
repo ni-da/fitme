@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/activity_execute_habit">
 
 
     <LinearLayout
@@ -35,12 +36,20 @@
             android:text="Hello there"
             android:textSize="18sp" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:id="@+id/imageView_smiely"
+                android:src="@drawable/ic_sentiment_satisfied_black_24dp"/>
+
         <Button
             android:id="@+id/button_startHabit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mark done!"
             app:layout_constraintStart_toStartOf="parent" />
+
         </LinearLayout>
 
     </LinearLayout>

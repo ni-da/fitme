@@ -5,7 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionManager;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,21 +27,24 @@ public class Main2Activity extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     ArrayList<Pair> items = new ArrayList<>();
+    ViewGroup activity_main2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        activity_main2 = findViewById(R.id.activity_main2);
+
+
         final Intent intent = getIntent();
-        final String name = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         final RecyclerView tasksList = (RecyclerView) findViewById(R.id.tasks_list);
 
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         tasksList.setLayoutManager(layoutManager);
         tasksList.addOnItemTouchListener(new RecyclerItemClickListener(Main2Activity.this, new RecyclerItemClickListener.OnItemClickListener() {
+
             @Override
             public void onItemClick(View view, int position) {
-                //Toast.makeText(Main2Activity.this, "Hello", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), ExecuteHabitActivity.class);
                 intent.putExtra("itemKey", items.get(position).getKey());
                 intent.putExtra("itemValue", items.get(position).getValue());
@@ -63,14 +72,31 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
-        User user = new UserManager().getUserFromDb();
-        TextView textView_gold_coins = findViewById(R.id.textView_gold_coins);//getUserFromDb
-        //Log.w("USERRRRR: ", user.gender);
-        new UserManager().getUserScore();
-        //textView_gold_coins.setText(new UserManager().getUserScore().toString());
+        final TextView textView_gold_coins = findViewById(R.id.textView_gold_coins);//getUserFromDb
+        new UserManager().getUserFromDb(new MyCallback<User>() {
+            @Override
+            public void onCallback(User element) {
+                textView_gold_coins.setText(element.getScore().toString());
+            }
+        });
+//        textView_gold_coins.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ImageView imageView = findViewById(R.id.imageView_settings);
+//                TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.activity_main2));
+//
+//                // position: LinearLayout
+//                LinearLayout.LayoutParams pos = new LinearLayout.LayoutParams(
+//                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
+//                );
+//                pos.gravity = Gravity.TOP;
+//                pos.gravity = Gravity.LEFT;
+//                imageView.setLayoutParams(pos);
+//            }
+//        });
 
-        //textView_gold_coins.setText("Ok");
     }
+
 
     private void showHabits(final RecyclerView tasksList) {
         mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -128,15 +154,6 @@ public class Main2Activity extends AppCompatActivity {
                     }
                 });
     }
-
-//    private void showScores() {
-//        mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        if (dataSnapshot.exists()) {
-//                            User user = dataSnapshot.getValue(User.class);
-//                            String score = user.getScore();
 
 
 }
