@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -62,6 +62,14 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SavingDummyData.class));
             }
         });
+
+        User user = new UserManager().getUserFromDb();
+        TextView textView_gold_coins = findViewById(R.id.textView_gold_coins);//getUserFromDb
+        //Log.w("USERRRRR: ", user.gender);
+        new UserManager().getUserScore();
+        //textView_gold_coins.setText(new UserManager().getUserScore().toString());
+
+        //textView_gold_coins.setText("Ok");
     }
 
     private void showHabits(final RecyclerView tasksList) {
@@ -120,5 +128,15 @@ public class Main2Activity extends AppCompatActivity {
                     }
                 });
     }
+
+//    private void showScores() {
+//        mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        if (dataSnapshot.exists()) {
+//                            User user = dataSnapshot.getValue(User.class);
+//                            String score = user.getScore();
+
 
 }

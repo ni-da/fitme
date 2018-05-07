@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.nidailyas.fitme.Main2Activity">
 
+    <include layout="@layout/header_main2" />
     <include layout="@layout/content_main2" />
+
 
 </android.support.design.widget.CoordinatorLayout>

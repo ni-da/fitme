@@ -96,6 +96,9 @@ public class User {
         String dateStr = String.format("%td/%tm/%tY", dateOfBirth, dateOfBirth, dateOfBirth);
         return dateStr;
     }
+    public Date getDateOfBirthinDate() {
+        return dateOfBirth;
+    }
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;

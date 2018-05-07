@@ -45,7 +45,7 @@ public class HabitManager {
         ArrayList<String> times = new ArrayList<String>();
         times.add("18:22");
         String habitFrequencyTimingId =  new HabitFrequencyTimingManager().addHabitFrequencyTiming(times, habitId);
-        Log.w("Thisss", habitFrequencyTimingId);
+        Log.w("Thissssss", habitFrequencyTimingId);
         //ArrayList<String> habitFrequencyTimings = new ArrayList<String>();
         //habitFrequencyTimings.add(habitFrequencyTimingId);
         //new PlanningManager().addPlanning(habitFrequencyTimings);

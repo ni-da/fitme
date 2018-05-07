@@ -3,6 +3,7 @@ package com.example.nidailyas.fitme;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -56,10 +57,11 @@ public class SavingDummyData extends AppCompatActivity {
 
 
     public void addLevel() {
+        EditText editText_levelSigName = findViewById(R.id.editText_levelSigName);
         DatabaseReference databaseReferenc_levels;
         databaseReferenc_levels = FirebaseDatabase.getInstance().getReference("levels");
         String levelId = databaseReferenc_levels.push().getKey(); //id
-        Level level = new Level(levelId, "beginer", 0, 100);
+        Level level = new Level(levelId, editText_levelSigName.getText().toString(), 0, 100);
         databaseReferenc_levels.child(levelId).setValue(level);
         toast();
     }
