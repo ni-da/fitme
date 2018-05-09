@@ -56,5 +56,11 @@ public class RecordManager {
 
     }
 
+    public void addRecordTodb(Record record) {
+        String recordId = databaseReferenceRecord.push().getKey();
+        record.recordId = recordId;
+        databaseReferenceRecord.setValue(record);
+    }
+
 
 }

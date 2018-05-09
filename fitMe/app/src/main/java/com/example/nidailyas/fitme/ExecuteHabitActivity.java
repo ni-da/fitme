@@ -5,38 +5,43 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Date;
 
 public class ExecuteHabitActivity extends Main2Activity {
     TextView circle_level;
     TextView textView_signatureName;
     TextView textView_gold_coins;
     TextView textView_gold_coins_count;
+    TextView textView_habitTitle;
+    TextView textView_habitDesc;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_execute_habit);
         Bundle bundle = getIntent().getExtras();
-        final String key = bundle.getString("itemKey");
-        String value = bundle.getString("itemValue");
-        updateHeader();
+//        final String key = bundle.getString("itemKey");
+//        String value = bundle.getString("itemValue");
 
-        TextView textView_habitTitle = findViewById(R.id.textView_habitTitle);
-        textView_habitTitle.setText(key);
-        TextView textView_habitDesc = findViewById(R.id.textView_habitDesc);
-        textView_habitDesc.setText(value);
+        updateHeader();
+        if (bundle != null) {
+            showHabitInfo(bundle.getString("habitId"));
+        }
+
+
+        textView_habitTitle = findViewById(R.id.textView_habitTitle);
+        //textView_habitTitle.setText(key);
+        textView_habitDesc = findViewById(R.id.textView_habitDesc);
+        //textView_habitDesc.setText(value);
         Button button_startHabit = findViewById(R.id.button_startHabit);
+
         button_startHabit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ExecuteHabitActivity.this, key + " is mark as done!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        button_startHabit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateScore();
+                executeHabit();
 
                 //ImageView imageView_smiely = findViewById(R.id.imageView_smiely);
                 //imageView_smiely.setVisibility(View.VISIBLE);
@@ -55,9 +60,23 @@ public class ExecuteHabitActivity extends Main2Activity {
 
     }
 
-    public void updateScore() {
+    public void executeHabit() {
         findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
         new UserManager().updateUserScore((long) 50);
+        Date today = new Date();
+        Record record = new Record(null, "Done", today,
+                FirebaseAuth.getInstance().getCurrentUser().getUid(), "habitId");
+        new RecordManager().addRecordTodb(record);
+    }
+
+    public void showHabitInfo(String habitId) {
+        new HabitManager().getHabitByIdFromDb(new MyCallback<Habit>() {
+            @Override
+            public void onCallback(Habit element) {
+                textView_habitTitle.setText(element.getHabitName());
+                textView_habitDesc.setText(element.getDescription());
+            }
+        }, habitId);
     }
 
     private void updateHeader() {

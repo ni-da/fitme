@@ -22,7 +22,10 @@ import java.util.ArrayList;
 public class Main2Activity extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    ArrayList<Pair> items = new ArrayList<>();
+    //ArrayList<Pair> items = new ArrayList<>();
+    ArrayList<Habit> habits = new ArrayList<>();
+    ArrayList<String> habitIds = new ArrayList<>();
+
     ViewGroup activity_main2;
     TextView circle_level;
     TextView textView_signatureName;
@@ -44,8 +47,8 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext(), ExecuteHabitActivity.class);
-                intent.putExtra("itemKey", items.get(position).getKey());
-                intent.putExtra("itemValue", items.get(position).getValue());
+                intent.putExtra("habitId", habitIds.get(position));
+
                 startActivity(intent);
             }
         }));
@@ -125,7 +128,7 @@ public class Main2Activity extends AppCompatActivity {
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     Planning planning = dataSnapshot.getValue(Planning.class);
                                     //Toast.makeText(Main2Activity.this, "Thissss: " +  planning.getHabitFrequencies(), Toast.LENGTH_SHORT).show();
-                                    ArrayList<String> habitsFreqIds = planning.getHabitFrequencies();
+                                    final ArrayList<String> habitsFreqIds = planning.getHabitFrequencies();
                                     //tasksList.setAdapter(new taskAdapter(habitsFreqIds));
                                     for (String object : habitsFreqIds) {
                                         mDatabase.child("habitFrequencyTimings").child(object).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -137,8 +140,12 @@ public class Main2Activity extends AppCompatActivity {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         Habit habit = dataSnapshot.getValue(Habit.class);
-                                                        items.add(new Pair(habit.getHabitName(), habit.getDescription()));
-                                                        tasksList.setAdapter(new taskAdapter(Main2Activity.this, items));
+                                                        //items.add(new Pair(habit.getHabitName(), habit.getDescription()));
+                                                        //habitsFreqIds.add(habit.getHabitId());
+                                                        habitIds.add(habit.getHabitId());
+                                                        habits.add(habit);
+                                                        tasksList.setAdapter(new taskAdapter(habits));
+
                                                     }
 
                                                     @Override

@@ -11,7 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.RecordsViewHolder> {
+public class RecordsAdapter extends
+        RecyclerView.Adapter<RecordsAdapter.RecordsViewHolder> {
 
     private ArrayList<Record> data;
 
@@ -70,4 +71,6 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.RecordsV
             textView_record_date = itemView.findViewById(R.id.textView_record_date);
         }
     }
+
+
 }

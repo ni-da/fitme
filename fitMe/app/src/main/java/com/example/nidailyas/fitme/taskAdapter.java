@@ -1,7 +1,7 @@
 package com.example.nidailyas.fitme;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +14,13 @@ import java.util.ArrayList;
  * Created by NidaI on 4/6/2018.
  */
 
-public class taskAdapter extends RecyclerView.Adapter<taskAdapter.tasksViewHolder> {
-    Context context;
-    tasksViewHolder holder;
-    private ArrayList<Pair> data;
+public class taskAdapter extends
+        RecyclerView.Adapter<taskAdapter.tasksViewHolder> {
+
+    private ArrayList<Habit> data;
 
 
-    public taskAdapter(Context context, ArrayList<Pair> data) {
-        this.context = context;
+    public taskAdapter(ArrayList<Habit> data) {
         this.data = data;
     }
 
@@ -35,9 +34,19 @@ public class taskAdapter extends RecyclerView.Adapter<taskAdapter.tasksViewHolde
     }
 
     @Override
-    public void onBindViewHolder(tasksViewHolder holder, int position) {
-        holder.txtTitle.setText(data.get(position).getKey());
-        holder.txtDesc.setText(data.get(position).getValue());
+    public void onBindViewHolder(final tasksViewHolder holder, int position) {
+        Habit habit = data.get(position);
+        Log.w("Position: ", habit.getHabitName());
+//        holder.txtTitle.setText(data.get(position).getKey());
+//        holder.txtDesc.setText(data.get(position).getValue());
+        new HabitManager().getHabitByIdFromDb(new MyCallback<Habit>() {
+                                                  @Override
+                                                  public void onCallback(Habit element) {
+                                                      holder.txtTitle.setText(element.getHabitName());
+                                                      holder.txtDesc.setText(element.getDescription());
+                                                  }
+                                              }
+                , habit.habitId);
     }
 
     @Override
@@ -45,16 +54,6 @@ public class taskAdapter extends RecyclerView.Adapter<taskAdapter.tasksViewHolde
         return data.size();
     }
 
-    public void clear() {
-        final int size = data.size();
-        if (size > 0) {
-            for (int i = 0; i < size; i++) {
-                data.remove(0);
-            }
-
-            notifyItemRangeRemoved(0, size);
-        }
-    }
 
     public class tasksViewHolder extends RecyclerView.ViewHolder {
         ImageView imgIcon;

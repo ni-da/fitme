@@ -13,7 +13,8 @@ public class Record {
 
     public Record(){}
 
-    public Record(String recordId, String result, Date examineDateTime, String userId, String habitId) {
+    public Record(String recordId, String result, Date examineDateTime,
+                  String userId, String habitId) {
         this.recordId = recordId;
         this.result = result;
         this.examineDateTime = examineDateTime;
