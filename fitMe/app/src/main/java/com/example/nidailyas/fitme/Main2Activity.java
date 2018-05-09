@@ -26,17 +26,15 @@ public class Main2Activity extends AppCompatActivity {
     ViewGroup activity_main2;
     TextView circle_level;
     TextView textView_signatureName;
+    TextView textView_gold_coins_count;
+    RecyclerView tasksList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         activity_main2 = findViewById(R.id.activity_main2);
-
-
-        final Intent intent = getIntent();
-        final RecyclerView tasksList = (RecyclerView) findViewById(R.id.tasks_list);
-
+        tasksList = (RecyclerView) findViewById(R.id.tasks_list);
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         tasksList.setLayoutManager(layoutManager);
         tasksList.addOnItemTouchListener(new RecyclerItemClickListener(Main2Activity.this, new RecyclerItemClickListener.OnItemClickListener() {
@@ -79,8 +77,8 @@ public class Main2Activity extends AppCompatActivity {
                 circle_level.setText(user.getLevelId());
                 new LevelManager().getLevelFromDb(new MyCallback<Level>() {
                     @Override
-                    public void onCallback(Level element) {
-                        textView_signatureName.setText(element.getSignatureName());
+                    public void onCallback(Level level) {
+                        textView_signatureName.setText(level.getSignatureName());
                     }
                 }, user.getLevelId());
 
@@ -95,14 +93,14 @@ public class Main2Activity extends AppCompatActivity {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Toast.makeText(Main2Activity.this, "Userid: " + userId, Toast.LENGTH_SHORT).show();
         mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .addValueEventListener(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             User user = dataSnapshot.getValue(User.class);
                             String planningId = user.planningId;
                             //Toast.makeText(Main2Activity.this, "Thissss: " +  user.planningId, Toast.LENGTH_SHORT).show();
-                            mDatabase.child("plannings").child(planningId).addValueEventListener(new ValueEventListener() {
+                            mDatabase.child("plannings").child(planningId).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     Planning planning = dataSnapshot.getValue(Planning.class);
@@ -110,12 +108,12 @@ public class Main2Activity extends AppCompatActivity {
                                     ArrayList<String> habitsFreqIds = planning.getHabitFrequencies();
                                     //tasksList.setAdapter(new taskAdapter(habitsFreqIds));
                                     for (String object : habitsFreqIds) {
-                                        mDatabase.child("habitFrequencyTimings").child(object).addValueEventListener(new ValueEventListener() {
+                                        mDatabase.child("habitFrequencyTimings").child(object).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 HabitFrequencyTiming habitFrequencyTiming = dataSnapshot.getValue(HabitFrequencyTiming.class);
 
-                                                mDatabase.child("habits").child(habitFrequencyTiming.getHabitId()).addValueEventListener(new ValueEventListener() {
+                                                mDatabase.child("habits").child(habitFrequencyTiming.getHabitId()).addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         Habit habit = dataSnapshot.getValue(Habit.class);

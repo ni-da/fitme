@@ -37,8 +37,6 @@ public class UserManager {
                 Long newScore = user.getScore() + score;
                 databaseReferenceUser.child(user.getUserId()).child("score").setValue(newScore);
                 new LevelManager().raiseUserLevel(user.getScore(), user.getLevelId());
-                //int lvl = (Integer.parseInt(user.getLevelId()))+ 1;
-                //updateUserLevel(Integer.toString(lvl));
             }
 
             @Override

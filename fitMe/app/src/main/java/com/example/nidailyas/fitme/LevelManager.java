@@ -1,5 +1,7 @@
 package com.example.nidailyas.fitme;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,13 +31,15 @@ public class LevelManager {
         getLevelFromDb(new MyCallback<Level>() {
             @Override
             public void onCallback(Level level) {
-                if (score > level.getMaxScore()) {
+                if (score+50 == level.getMaxScore()) {
                     //verhoogLevel
                     int lvl = (Integer.parseInt(levelId)) + 1;
                     new UserManager().updateUserLevel(Integer.toString(lvl));
+                   Log.w("LEVELLLLL: ", Integer.toString(lvl));
                 }
             }
         }, levelId);
     }
+
 
 }

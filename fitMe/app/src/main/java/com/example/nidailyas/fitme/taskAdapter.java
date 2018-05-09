@@ -1,28 +1,23 @@
 package com.example.nidailyas.fitme;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import java.util.ArrayList;
 /**
  * Created by NidaI on 4/6/2018.
  */
 
 public class taskAdapter extends RecyclerView.Adapter<taskAdapter.tasksViewHolder> {
     Context context;
-    private ArrayList<Pair> data;
     tasksViewHolder holder;
+    private ArrayList<Pair> data;
 
 
     public taskAdapter(Context context, ArrayList<Pair> data) {
@@ -50,10 +45,18 @@ public class taskAdapter extends RecyclerView.Adapter<taskAdapter.tasksViewHolde
         return data.size();
     }
 
+    public void clear() {
+        final int size = data.size();
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                data.remove(0);
+            }
 
+            notifyItemRangeRemoved(0, size);
+        }
+    }
 
-
-    public class tasksViewHolder extends RecyclerView.ViewHolder{
+    public class tasksViewHolder extends RecyclerView.ViewHolder {
         ImageView imgIcon;
         TextView txtTitle;
         TextView txtDesc;
