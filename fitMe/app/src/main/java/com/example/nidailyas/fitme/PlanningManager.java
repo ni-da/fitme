@@ -21,7 +21,8 @@ public class PlanningManager {
     }
     public void updatePlanning(final String habitFrequency){
         DatabaseReference databaseReferenceUser = FirebaseDatabase.getInstance().getReference("users");
-        databaseReferenceUser.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+        databaseReferenceUser.child(FirebaseAuth.getInstance().
+                getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {

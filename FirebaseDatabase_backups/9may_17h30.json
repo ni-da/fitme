@@ -1,0 +1,205 @@
+{
+  "habitFrequencyTimings" : {
+    "habitFrequencies123" : {
+      "habitFrequencyTimingId" : "habitFrequencies123",
+      "habitId" : "habitId1",
+      "times" : [ "8:00", "19:00" ]
+    },
+    "habitFrequencies1234" : {
+      "habitFrequencyTimingId" : "habitFrequencies1234",
+      "habitId" : "habitId2",
+      "times" : [ "10:00", "17:00" ]
+    }
+  },
+  "habits" : {
+    "habitId1" : {
+      "description" : "Walk for almost 25 mins.",
+      "habitId" : "habitId1",
+      "habitName" : "Walk"
+    },
+    "habitId2" : {
+      "description" : "Run for almost 10 min",
+      "habitId" : "habitId2",
+      "habitName" : "Run"
+    }
+  },
+  "levels" : [ null, {
+    "levelId" : "1",
+    "maxScore" : 300,
+    "minScore" : 0,
+    "signatureName" : "Newbie"
+  }, {
+    "levelId" : "2",
+    "maxScore" : 600,
+    "minScore" : 300,
+    "signatureName" : "Beginner"
+  }, {
+    "levelId" : "3",
+    "maxScore" : 900,
+    "minScore" : 600,
+    "signatureName" : "Talented"
+  }, {
+    "levelId" : "4",
+    "maxScore" : 1100,
+    "minScore" : 900,
+    "signatureName" : "Semi-pro"
+  }, {
+    "levelId" : "5",
+    "maxScore" : 1300,
+    "minScore" : 1100,
+    "signatureName" : "Pro"
+  }, {
+    "levelId" : "6",
+    "maxScore" : 1500,
+    "minScore" : 1300,
+    "signatureName" : "Experienced"
+  }, {
+    "levelId" : "7",
+    "maxScore" : 2000,
+    "minScore" : 1500,
+    "signatureName" : "Expert"
+  } ],
+  "plannings" : {
+    "123abc" : {
+      "habitFrequencies" : [ "habitFrequencies123", "habitFrequencies1234" ],
+      "planningId" : "123abc"
+    }
+  },
+  "records" : {
+    "recordId1" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "recordId1",
+      "result" : "Done",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "recordId2" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "recordId2",
+      "result" : "Done",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "recordId3" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "recordId3",
+      "result" : "Done",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "recordId4" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "recordId4",
+      "result" : "Done",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "recordId5" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "recordId5",
+      "result" : "Done",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    }
+  },
+  "users" : {
+    "4YhI1n2nAkUkW4IWuIxWq8EwMSj1" : {
+      "begin_bp_lower" : 0,
+      "begin_bp_upper" : 3.6,
+      "dateOfBirth" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "gender" : "F",
+      "height" : 14.3,
+      "levelId" : "1",
+      "name" : "Nida",
+      "planningId" : "123abc",
+      "profileImageUrl" : "https://firebasestorage.googleapis.com/v0/b/fitme-01.appspot.com/o/profilepics%2F1525818945383.jpg?alt=media&token=1ff8fa88-fff5-4722-add7-7ae3750c70a2",
+      "score" : 0,
+      "userId" : "4YhI1n2nAkUkW4IWuIxWq8EwMSj1",
+      "weight" : 14.3
+    },
+    "h0w2C7aT34eaFym2BmCL4wgAilA2" : {
+      "begin_bp_lower" : 0,
+      "begin_bp_upper" : 3.6,
+      "dateOfBirth" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "gender" : "F",
+      "height" : 14.3,
+      "levelId" : "2",
+      "name" : "Nida",
+      "planningId" : "123abc",
+      "profileImageUrl" : "https://firebasestorage.googleapis.com/v0/b/fitme-01.appspot.com/o/profilepics%2F1525818945383.jpg?alt=media&token=1ff8fa88-fff5-4722-add7-7ae3750c70a2",
+      "score" : 350,
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2",
+      "weight" : 14.3
+    }
+  }
+}
