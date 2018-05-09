@@ -44,7 +44,8 @@
 
         <receiver android:name=".Notification_reciever" />
 
-        <activity android:name=".SavingDummyData"></activity>
+        <activity android:name=".SavingDummyData" />
+        <activity android:name=".RecordsActivity"></activity>
     </application>
 
 </manifest>

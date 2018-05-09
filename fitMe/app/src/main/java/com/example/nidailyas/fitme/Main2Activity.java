@@ -30,6 +30,7 @@ public class Main2Activity extends AppCompatActivity {
     RecyclerView tasksList;
     TextView textView_gold_coins;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +69,12 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SavingDummyData.class));
             }
         });
-
-
+        findViewById(R.id.button_records).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), RecordsActivity.class));
+            }
+        });
         updateHeader();
 
 
