@@ -10,11 +10,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <View
+            android:layout_width="20dp"
+            android:layout_height="120dp"
+            android:layout_weight="0" />
 
-    <View
-        android:layout_width="20dp"
-        android:layout_height="120dp"
-        android:layout_weight="0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            android:background="@color/lightGray">
+
+
+            <TextView
+                android:id="@+id/textView_record_habitNameTxt"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Habit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/textView_record_dateTxt"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/textView_record_timeTxt"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Time"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/textView_record_resultTxt"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="Result"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/records_list"

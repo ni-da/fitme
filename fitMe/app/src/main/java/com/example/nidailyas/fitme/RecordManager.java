@@ -30,7 +30,6 @@ public class RecordManager {
         });
     }
 
-
     public void getUserRecordsFromDb(final MyCallback<ArrayList<Record>> myCallback) {
         final ArrayList<Record> records = new ArrayList<Record>();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -59,8 +58,6 @@ public class RecordManager {
     public void addRecordTodb(Record record) {
         String recordId = databaseReferenceRecord.push().getKey();
         record.recordId = recordId;
-        databaseReferenceRecord.setValue(record);
+        databaseReferenceRecord.child(recordId).setValue(record);
     }
-
-
 }

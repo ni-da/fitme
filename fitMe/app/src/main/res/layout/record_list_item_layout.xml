@@ -1,52 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/record_list_item_layout"
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_margin="8dp"
-    android:id="@+id/record_list_item_layout"
     android:background="@color/lightGray">
 
 
     <TextView
         android:id="@+id/textView_record_habitName"
-        android:layout_width="wrap_content"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:layout_margin="15dp"
+        android:text="Habit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
+
     <TextView
         android:id="@+id/textView_record_date"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="15dp"
         android:text="Date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
+
     <TextView
         android:id="@+id/textView_record_time"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="time"
+        android:layout_margin="15dp"
+        android:text="Time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:background="@color/white" />
+
     <TextView
         android:id="@+id/textView_record_result"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="15dp"
         android:text="Result"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -17,18 +17,17 @@ public class ExecuteHabitActivity extends Main2Activity {
     TextView textView_gold_coins_count;
     TextView textView_habitTitle;
     TextView textView_habitDesc;
+    String habitId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_execute_habit);
         Bundle bundle = getIntent().getExtras();
-//        final String key = bundle.getString("itemKey");
-//        String value = bundle.getString("itemValue");
-
         updateHeader();
         if (bundle != null) {
-            showHabitInfo(bundle.getString("habitId"));
+            habitId = bundle.getString("habitId");
+            showHabitInfo(habitId);
         }
 
 
@@ -65,7 +64,7 @@ public class ExecuteHabitActivity extends Main2Activity {
         new UserManager().updateUserScore((long) 50);
         Date today = new Date();
         Record record = new Record(null, "Done", today,
-                FirebaseAuth.getInstance().getCurrentUser().getUid(), "habitId");
+                FirebaseAuth.getInstance().getCurrentUser().getUid(), habitId);
         new RecordManager().addRecordTodb(record);
     }
 
