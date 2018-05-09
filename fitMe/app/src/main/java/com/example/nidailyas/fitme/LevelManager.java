@@ -31,14 +31,32 @@ public class LevelManager {
         getLevelFromDb(new MyCallback<Level>() {
             @Override
             public void onCallback(Level level) {
-                if (score+50 == level.getMaxScore()) {
+                if (score + 50 == level.getMaxScore()) {
                     //verhoogLevel
                     int lvl = (Integer.parseInt(levelId)) + 1;
                     new UserManager().updateUserLevel(Integer.toString(lvl));
-                   Log.w("LEVELLLLL: ", Integer.toString(lvl));
+                    Log.w("LEVELLLLL: ", Integer.toString(lvl));
                 }
             }
         }, levelId);
+    }
+
+
+    public void getScoreToNextLevel(final MyCallback<Long> myCallback, String levelId, final Long score) {
+        databaseReferenceLevel.child(levelId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Level level = dataSnapshot.getValue(Level.class);
+                    long scoreToGO = level.getMaxScore() - score;
+                    myCallback.onCallback(scoreToGO);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
 

@@ -28,6 +28,7 @@ public class Main2Activity extends AppCompatActivity {
     TextView textView_signatureName;
     TextView textView_gold_coins_count;
     RecyclerView tasksList;
+    TextView textView_gold_coins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +68,19 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SavingDummyData.class));
             }
         });
+
+
+        updateHeader();
+
+
+    }
+
+    private void updateHeader() {
         circle_level = findViewById(R.id.circle_level);
         textView_signatureName = findViewById(R.id.textView_signatureName);
-        final TextView textView_gold_coins = findViewById(R.id.textView_gold_coins);//getUserFromDb
+        textView_gold_coins = findViewById(R.id.textView_gold_coins);
+        textView_gold_coins_count = findViewById(R.id.textView_gold_coins_count);
+
         new UserManager().getUserFromDb(new MyCallback<User>() {
             @Override
             public void onCallback(User user) {
@@ -81,11 +92,15 @@ public class Main2Activity extends AppCompatActivity {
                         textView_signatureName.setText(level.getSignatureName());
                     }
                 }, user.getLevelId());
+                new LevelManager().getScoreToNextLevel(new MyCallback<Long>() {
+                    @Override
+                    public void onCallback(Long element) {
+                        textView_gold_coins_count.setText(Long.toString(element) + "/300");
+                    }
+                }, user.getLevelId(), user.getScore());
 
             }
         });
-
-
     }
 
 

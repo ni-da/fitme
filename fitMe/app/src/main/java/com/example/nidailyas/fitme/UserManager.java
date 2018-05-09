@@ -62,6 +62,8 @@ public class UserManager {
             }
         });
     }
+
+
 }
 
 //new UserManager().getUserFromDb(new MyCallback<User>() {
