@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
                                 editText_height.setText(Double.toString(user.getHeight()));
                                 editText_bp_L.setText(Double.toString(user.getBegin_bp_lower()));
                                 editText_bp_U.setText(Double.toString(user.getBegin_bp_upper()));
-                                dateView.setText(user.getDateOfBirth());
+                                dateView.setText(user.getDateOfBirth().toString());
                                 // setting up gender radios
                                 if (user.getGender().equals("M")) {
                                     radioGroup_gender.check(R.id.radio_male);

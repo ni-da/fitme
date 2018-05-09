@@ -5,14 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +24,8 @@ public class Main2Activity extends AppCompatActivity {
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     ArrayList<Pair> items = new ArrayList<>();
     ViewGroup activity_main2;
+    TextView circle_level;
+    TextView textView_signatureName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,34 +69,31 @@ public class Main2Activity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SavingDummyData.class));
             }
         });
-
+        circle_level = findViewById(R.id.circle_level);
+        textView_signatureName = findViewById(R.id.textView_signatureName);
         final TextView textView_gold_coins = findViewById(R.id.textView_gold_coins);//getUserFromDb
         new UserManager().getUserFromDb(new MyCallback<User>() {
             @Override
-            public void onCallback(User element) {
-                textView_gold_coins.setText(element.getScore().toString());
+            public void onCallback(User user) {
+                textView_gold_coins.setText(user.getScore().toString());
+                circle_level.setText(user.getLevelId());
+                new LevelManager().getLevelFromDb(new MyCallback<Level>() {
+                    @Override
+                    public void onCallback(Level element) {
+                        textView_signatureName.setText(element.getSignatureName());
+                    }
+                }, user.getLevelId());
+
             }
         });
-//        textView_gold_coins.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ImageView imageView = findViewById(R.id.imageView_settings);
-//                TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.activity_main2));
-//
-//                // position: LinearLayout
-//                LinearLayout.LayoutParams pos = new LinearLayout.LayoutParams(
-//                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
-//                );
-//                pos.gravity = Gravity.TOP;
-//                pos.gravity = Gravity.LEFT;
-//                imageView.setLayoutParams(pos);
-//            }
-//        });
+
 
     }
 
 
     private void showHabits(final RecyclerView tasksList) {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Toast.makeText(Main2Activity.this, "Userid: " + userId, Toast.LENGTH_SHORT).show();
         mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -114,7 +109,6 @@ public class Main2Activity extends AppCompatActivity {
                                     //Toast.makeText(Main2Activity.this, "Thissss: " +  planning.getHabitFrequencies(), Toast.LENGTH_SHORT).show();
                                     ArrayList<String> habitsFreqIds = planning.getHabitFrequencies();
                                     //tasksList.setAdapter(new taskAdapter(habitsFreqIds));
-
                                     for (String object : habitsFreqIds) {
                                         mDatabase.child("habitFrequencyTimings").child(object).addValueEventListener(new ValueEventListener() {
                                             @Override

@@ -8,6 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ExecuteHabitActivity extends Main2Activity {
+    TextView circle_level;
+    TextView textView_signatureName;
+    TextView textView_gold_coins;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,11 +19,22 @@ public class ExecuteHabitActivity extends Main2Activity {
         Bundle bundle = getIntent().getExtras();
         final String key = bundle.getString("itemKey");
         String value = bundle.getString("itemValue");
-        final TextView textView_gold_coins = findViewById(R.id.textView_gold_coins);//getUserFromDb
+        textView_gold_coins = findViewById(R.id.textView_gold_coins);//getUserFromDb
+        circle_level = findViewById(R.id.circle_level);
+        textView_signatureName = findViewById(R.id.textView_signatureName);
+
         new UserManager().getUserFromDb(new MyCallback<User>() {
             @Override
-            public void onCallback(User element) {
-                textView_gold_coins.setText(element.getScore().toString());
+            public void onCallback(User user) {
+                textView_gold_coins.setText(user.getScore().toString());
+                circle_level.setText(user.getLevelId());
+                new LevelManager().getLevelFromDb(new MyCallback<Level>() {
+                    @Override
+                    public void onCallback(Level element) {
+                        textView_signatureName.setText(element.getSignatureName());
+                    }
+                }, user.getLevelId());
+
             }
         });
 
@@ -57,12 +72,7 @@ public class ExecuteHabitActivity extends Main2Activity {
 
     }
 
-    // update score
-    // update to database
-    // update in activity: textView_gold_coins
-    // show ++lbl
     public void updateScore() {
-
         findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
         new UserManager().updateUserScore((long) 50);
     }

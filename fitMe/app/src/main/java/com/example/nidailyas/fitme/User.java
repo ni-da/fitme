@@ -92,13 +92,20 @@ public class User {
         this.name = name;
     }
 
-    public String getDateOfBirth() {
-        String dateStr = String.format("%td/%tm/%tY", dateOfBirth, dateOfBirth, dateOfBirth);
-        return dateStr;
+//    public String getDateOfBirth() {
+//        String dateStr = String.format("%td/%tm/%tY", dateOfBirth, dateOfBirth, dateOfBirth);
+//        return dateStr;
+//    }
+
+    public Date getDateOfBirth() {
+        //String dateStr = String.format("%td/%tm/%tY", dateOfBirth, dateOfBirth, dateOfBirth);
+        return this.dateOfBirth;
     }
-    public Date getDateOfBirthinDate() {
-        return dateOfBirth;
-    }
+
+
+//    public Date getDateOfBirthinDate() {
+//        return dateOfBirth;
+//    }
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;

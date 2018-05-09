@@ -1,5 +1,7 @@
 package com.example.nidailyas.fitme;
 
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,18 +21,46 @@ public class UserManager {
                     myCallback.onCallback(user);
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
 
-    public void updateUserScore(final Long score){
-        getUserFromDb(new MyCallback<User>() {
+    public void updateUserScore(final Long score) {
+        final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReferenceUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onCallback(User element) {
-                Long newScore = element.getScore()+score;
-                databaseReferenceUser.child(element.getUserId()).child("score").setValue(newScore);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                Long newScore = user.getScore() + score;
+                databaseReferenceUser.child(user.getUserId()).child("score").setValue(newScore);
+                new LevelManager().raiseUserLevel(user.getScore(), user.getLevelId());
+                //int lvl = (Integer.parseInt(user.getLevelId()))+ 1;
+                //updateUserLevel(Integer.toString(lvl));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    public void updateUserLevel(final String levelId) {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReferenceUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                databaseReferenceUser.child(user.getUserId()).child("levelId").setValue(levelId);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
