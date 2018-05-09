@@ -1,7 +1,6 @@
 package com.example.nidailyas.fitme;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,16 +38,34 @@ public class HabitManager {
 
     public void addHabitToDb() {
         String habitId = databaseReference.push().getKey();
-        Habit habit = new Habit(habitId, "Eat veggies","Have almost 2 greens." );
+        Habit habit = new Habit(habitId, "Eat veggies", "Have almost 2 greens.");
         databaseReference.child(habitId).setValue(habit);
 
         ArrayList<String> times = new ArrayList<String>();
         times.add("18:22");
-        String habitFrequencyTimingId =  new HabitFrequencyTimingManager().addHabitFrequencyTiming(times, habitId);
+        String habitFrequencyTimingId = new HabitFrequencyTimingManager().addHabitFrequencyTiming(times, habitId);
         Log.w("Thissssss", habitFrequencyTimingId);
         //ArrayList<String> habitFrequencyTimings = new ArrayList<String>();
         //habitFrequencyTimings.add(habitFrequencyTimingId);
         //new PlanningManager().addPlanning(habitFrequencyTimings);
         new PlanningManager().updatePlanning(habitFrequencyTimingId);
     }
+
+    public void getHabitByIdFromDb(final MyCallback<Habit> myCallback, String habitId) {
+        databaseReference.child(habitId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Habit habit = dataSnapshot.getValue(Habit.class);
+                    myCallback.onCallback(habit);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }

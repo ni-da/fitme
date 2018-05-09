@@ -23,21 +23,24 @@ public class RecordsActivity extends AppCompatActivity {
         records_list = findViewById(R.id.records_list);
         records_list.setLayoutManager(new LinearLayoutManager(this));
 
-        ArrayList<String> data = new ArrayList<>();
-        data.add("a");
-        data.add("f");
-        data.add("d");
-        data.add("e");
-        data.add("r");
-        data.add("p");
+        //ArrayList<Record> data = new ArrayList<>();
+//        data.add("a");
+//        data.add("f");
+//        data.add("d");
+//        data.add("e");
+//        data.add("r");
+//        data.add("p");
 
-        records_list.setAdapter(new RecordsAdapter(data));
+        //records_list.setAdapter(new RecordsAdapter(data));
         new RecordManager().getUserRecordsFromDb(new MyCallback<ArrayList<Record>>() {
             @Override
             public void onCallback(ArrayList<Record> records) {
-                for (Record record : records) {
-                    Toast.makeText(getApplicationContext(), record.getRecordId(), Toast.LENGTH_SHORT).show();
-                }
+                records_list.setAdapter(new RecordsAdapter(records));
+
+//                for (Record record : records) {
+//                    //Toast.makeText(getApplicationContext(), record.getRecordId(), Toast.LENGTH_SHORT).show();
+//
+//                }
             }
         });
 

@@ -6,11 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".RecordsActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <View
+        android:layout_width="20dp"
+        android:layout_height="120dp"
+        android:layout_weight="0" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/records_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
