@@ -1,7 +1,5 @@
 package com.example.nidailyas.fitme;
 
-import android.util.Log;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,20 +10,19 @@ import java.util.ArrayList;
 
 public class HabitManager {
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("habits");
+    DatabaseReference databaseReferenceHabit = FirebaseDatabase.getInstance().getReference("habits");
 
-    public ArrayList<String> getAllHabitNames() {
-        final ArrayList<String> habitNamesList = new ArrayList<String>() {
-        };
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    public void getHabitNamesFromDb(final MyCallback<ArrayList<String>> myCallback) {
+        final ArrayList<String> habitNames = new ArrayList<>();
+        databaseReferenceHabit.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                habitNamesList.clear();
-                for (DataSnapshot habitSnapshot : dataSnapshot.getChildren()) {
-                    Habit habit = habitSnapshot.getValue(Habit.class);
-                    habitNamesList.add(habit.getHabitName());
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Habit habit = snapshot.getValue(Habit.class);
+                    habitNames.add(habit.getHabitName());
                 }
-                habitNamesList.add("Add new habit");
+                habitNames.add("Add new habit");
+                myCallback.onCallback(habitNames);
             }
 
             @Override
@@ -33,13 +30,12 @@ public class HabitManager {
 
             }
         });
-        return habitNamesList;
     }
 
     public void addHabitToDb() {
-        String habitId = databaseReference.push().getKey();
+        String habitId = databaseReferenceHabit.push().getKey();
         Habit habit = new Habit(habitId, "Eat veggies", "Have almost 2 greens.");
-        databaseReference.child(habitId).setValue(habit);
+        databaseReferenceHabit.child(habitId).setValue(habit);
 
         ArrayList<String> times = new ArrayList<String>();
         times.add("18:22");
@@ -51,7 +47,7 @@ public class HabitManager {
     }
 
     public void getHabitByIdFromDb(final MyCallback<Habit> myCallback, String habitId) {
-        databaseReference.child(habitId).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReferenceHabit.child(habitId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -66,5 +62,25 @@ public class HabitManager {
             }
         });
     }
+
+    public void getHabitByNameFromDb(final MyCallback<Habit>
+                                             myCallback, final String habitName) {
+        databaseReferenceHabit.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Habit habit = snapshot.getValue(Habit.class);
+                    if (habit.getHabitName().equals(habitName)) {
+                        myCallback.onCallback(habit);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
 
 }

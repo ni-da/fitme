@@ -30,10 +30,11 @@ public class RecordManager {
         });
     }
 
+
+
     public void getUserRecordsFromDb(final MyCallback<ArrayList<Record>> myCallback) {
         final ArrayList<Record> records = new ArrayList<Record>();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
 
         databaseReferenceRecord.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
