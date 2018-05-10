@@ -21,10 +21,12 @@ import java.util.Calendar;
 
 public class PlanningActivity extends AppCompatActivity {
     EditText editText_habitName;
-    EditText getEditText_habitFrequency;
+    EditText editText_habitDetail;
     TimePicker timePicker;
     int notifyHour, notifyMin;
-
+    Boolean customHabit;
+    String selectedHabitId;
+    ArrayList<String> times = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class PlanningActivity extends AppCompatActivity {
 
 
         editText_habitName = findViewById(R.id.editText_habitName);
-        getEditText_habitFrequency = findViewById(R.id.editText_habitFrequency);
+        editText_habitDetail = findViewById(R.id.editText_habitDetail);
         timePicker = findViewById(R.id.timePicker1);
         notifyHour = timePicker.getCurrentHour();
         notifyMin = timePicker.getCurrentMinute();
@@ -53,18 +55,22 @@ public class PlanningActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         if (i == element.size() - 1) {
+                            customHabit = true;
                             // add new habit is selected
                             // - add habit to db => habits, habitFrequencies, getUserPlanningId(), plannings
                             //
 
                         } else {
+                            customHabit = false;
                             // - add habit to db => habitFrequencies, getUserPlanningId(), plannings
-
                             new HabitManager().getHabitByNameFromDb(new MyCallback<Habit>() {
                                 @Override
-                                public void onCallback(Habit element) {
+                                public void onCallback(final Habit element) {
                                     editText_habitName.setText(element.getHabitName());
                                     editText_habitName.setInputType(InputType.TYPE_NULL);
+                                    editText_habitDetail.setText(element.getDescription());
+                                    editText_habitDetail.setInputType(InputType.TYPE_NULL);
+                                    selectedHabitId = element.getHabitId();
                                 }
                             }, habitNamesArray[i]);
                         }
@@ -83,7 +89,10 @@ public class PlanningActivity extends AppCompatActivity {
         findViewById(R.id.button_saveHabit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //addHabitToDb();
+                if (customHabit) {
+                } else {
+                    addHabitToUserProfile(times, selectedHabitId);
+                }
             }
         });
 
@@ -98,11 +107,15 @@ public class PlanningActivity extends AppCompatActivity {
         findViewById(R.id.button_addTime).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String timeString = Integer.toString(timePicker.getCurrentHour()) + ":" +
+                        Integer.toString(timePicker.getCurrentMinute());
                 LinearLayout linearLayout = findViewById(R.id.LinearLayout_habitTimes);
                 TextView time = new TextView(getApplicationContext());
-                time.setText(Integer.toString(timePicker.getCurrentHour()) + ":" +
-                        Integer.toString(timePicker.getCurrentMinute()));
-                time.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+                times.add(timeString);
+                time.setText(timeString);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                params.setMargins(10, 10, 10, 10);
+                time.setLayoutParams(params);
                 linearLayout.addView(time);
             }
         });
@@ -125,7 +138,9 @@ public class PlanningActivity extends AppCompatActivity {
     }
 
 
-//        private void addHabitToUserProfile() {
+    private void addHabitToUserProfile(ArrayList<String> times, String habitId) {
+        new UserManager().addHabitToUserPlanning(times, habitId);
+
 //        String name = editText_habitName.getText().toString().trim();
 //        int frequency;
 //        if (!TextUtils.isEmpty(getEditText_habitFrequency.getText().toString())) {
@@ -134,7 +149,7 @@ public class PlanningActivity extends AppCompatActivity {
 //            frequency = 1;
 //        }
 //        if (!TextUtils.isEmpty(name)) {
-//            String habitId = databaseReference.push().getKey();
+//            String habitId = datassbaseReference.push().getKey();
 //            Habit habit = new Habit(habitId, name, frequency);
 //            databaseReference.child(habitId).setValue(habit);
 //            Toast.makeText(this, "Habit added", Toast.LENGTH_SHORT).show();
@@ -142,7 +157,7 @@ public class PlanningActivity extends AppCompatActivity {
 //            editText_habitName.setError("Name required");
 //            editText_habitName.requestFocus();
 //        }
-//    }
+    }
 
 
 }

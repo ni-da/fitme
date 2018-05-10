@@ -72,7 +72,7 @@ public class SavingDummyData extends AppCompatActivity {
 //        String habitId = databaseReference_habits.push().getKey(); //id
 //        Habit habit = new Habit(habitId, "Run", "Run for almost 20 minuts.");
 //        databaseReference_habits.child(habitId).setValue(habit);
-        new HabitManager().addHabitToDb();
+        //new HabitManager().addHabitToDb();
         toast();
     }
 

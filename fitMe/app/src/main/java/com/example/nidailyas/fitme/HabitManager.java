@@ -32,18 +32,19 @@ public class HabitManager {
         });
     }
 
-    public void addHabitToDb() {
+    public void addNewHabitToDb(Habit habit) {
         String habitId = databaseReferenceHabit.push().getKey();
-        Habit habit = new Habit(habitId, "Eat veggies", "Have almost 2 greens.");
+        habit.habitId = habitId;
         databaseReferenceHabit.child(habitId).setValue(habit);
 
         ArrayList<String> times = new ArrayList<String>();
         times.add("18:22");
-        String habitFrequencyTimingId = new HabitFrequencyTimingManager().addHabitFrequencyTiming(times, habitId);
-        //ArrayList<String> habitFrequencyTimings = new ArrayList<String>();
+//        String habitFrequencyTimingId = new HabitFrequencyTimingManager().addHabitFrequencyTimingToDb
+//                (times, habitId);
+//        //ArrayList<String> habitFrequencyTimings = new ArrayList<String>();
         //habitFrequencyTimings.add(habitFrequencyTimingId);
         //new PlanningManager().addPlanning(habitFrequencyTimings);
-        new PlanningManager().updatePlanning(habitFrequencyTimingId);
+        //new PlanningManager().updatePlanning(habitFrequencyTimingId);
     }
 
     public void getHabitByIdFromDb(final MyCallback<Habit> myCallback, String habitId) {

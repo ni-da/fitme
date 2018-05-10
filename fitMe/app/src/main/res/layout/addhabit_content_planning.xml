@@ -37,24 +37,31 @@
             android:layout_height="20dp"
             android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/textView_frequency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="How many times per day do you want to do this habit?" />
-
         <EditText
-            android:id="@+id/editText_habitFrequency"
-            android:layout_width="wrap_content"
+            android:id="@+id/editText_habitDetail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ems="10"
-            android:hint="0"
-            android:inputType="number"
-            tools:layout_editor_absoluteX="157dp"
-            tools:layout_editor_absoluteY="140dp" />
+            android:hint="habit detail" />
+
+
+        <!--<TextView-->
+        <!--android:id="@+id/textView_frequency"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="How many times per day do you want to do this habit?" />-->
+
+        <!--<EditText-->
+        <!--android:id="@+id/editText_habitFrequency"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:ems="10"-->
+        <!--android:hint="0"-->
+        <!--android:inputType="number"-->
+        <!--tools:layout_editor_absoluteX="157dp"-->
+        <!--tools:layout_editor_absoluteY="140dp" />-->
 
         <TextView
             android:id="@+id/textView_time"
@@ -91,8 +98,7 @@
             android:id="@+id/LinearLayout_habitTimes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-        </LinearLayout>
+            android:orientation="horizontal"></LinearLayout>
 
         <Button
             android:id="@+id/button_saveHabit"
