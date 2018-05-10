@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class HabitManager {
 
     DatabaseReference databaseReferenceHabit = FirebaseDatabase.getInstance().getReference("habits");
-
     public void getHabitNamesFromDb(final MyCallback<ArrayList<String>> myCallback) {
         final ArrayList<String> habitNames = new ArrayList<>();
         databaseReferenceHabit.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -24,7 +23,6 @@ public class HabitManager {
                 habitNames.add("Add new habit");
                 myCallback.onCallback(habitNames);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -32,19 +30,14 @@ public class HabitManager {
         });
     }
 
-    public void addNewHabitToDb(Habit habit) {
+    public String addNewHabitToDb(Habit habit) {
         String habitId = databaseReferenceHabit.push().getKey();
         habit.habitId = habitId;
         databaseReferenceHabit.child(habitId).setValue(habit);
 
         ArrayList<String> times = new ArrayList<String>();
         times.add("18:22");
-//        String habitFrequencyTimingId = new HabitFrequencyTimingManager().addHabitFrequencyTimingToDb
-//                (times, habitId);
-//        //ArrayList<String> habitFrequencyTimings = new ArrayList<String>();
-        //habitFrequencyTimings.add(habitFrequencyTimingId);
-        //new PlanningManager().addPlanning(habitFrequencyTimings);
-        //new PlanningManager().updatePlanning(habitFrequencyTimingId);
+        return habitId;
     }
 
     public void getHabitByIdFromDb(final MyCallback<Habit> myCallback, String habitId) {

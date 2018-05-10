@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
@@ -56,13 +57,14 @@ public class PlanningActivity extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         if (i == element.size() - 1) {
                             customHabit = true;
-                            // add new habit is selected
-                            // - add habit to db => habits, habitFrequencies, getUserPlanningId(), plannings
-                            //
 
+                            editText_habitName.getText().clear();
+                            editText_habitDetail.getText().clear();
+
+                            editText_habitName.setInputType(InputType.TYPE_CLASS_TEXT);
+                            editText_habitDetail.setInputType(InputType.TYPE_CLASS_TEXT);
                         } else {
                             customHabit = false;
-                            // - add habit to db => habitFrequencies, getUserPlanningId(), plannings
                             new HabitManager().getHabitByNameFromDb(new MyCallback<Habit>() {
                                 @Override
                                 public void onCallback(final Habit element) {
@@ -90,6 +92,12 @@ public class PlanningActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (customHabit) {
+                    if (checkEditTextValidation(editText_habitName) && checkEditTextValidation(editText_habitDetail)) {
+                        String newAddedHabitId = addNewHabitToDb
+                                (editText_habitName.getText().toString(),
+                                        editText_habitDetail.getText().toString());
+                        addHabitToUserProfile(times, newAddedHabitId);
+                    }
                 } else {
                     addHabitToUserProfile(times, selectedHabitId);
                 }
@@ -157,6 +165,21 @@ public class PlanningActivity extends AppCompatActivity {
 //            editText_habitName.setError("Name required");
 //            editText_habitName.requestFocus();
 //        }
+    }
+
+    private Boolean checkEditTextValidation(EditText editText) {
+        if (TextUtils.isEmpty(editText.getText().toString())) {
+            editText.setError("Name required");
+            editText.requestFocus();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private String addNewHabitToDb(String habitName, String description) {
+        Habit habit = new Habit(null, habitName, description);
+        return new HabitManager().addNewHabitToDb(habit);
     }
 
 
