@@ -76,6 +76,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), RecordsActivity.class));
+                //startActivity(new Intent(getApplicationContext(), WeightActivity.class));
             }
         });
         updateHeader();

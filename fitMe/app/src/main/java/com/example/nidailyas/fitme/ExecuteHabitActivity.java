@@ -80,7 +80,9 @@ public class ExecuteHabitActivity extends Main2Activity implements SensorEventLi
     }
 
     public void executeHabit() {
-        findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
+//        findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
+        findViewById(R.id.animation_view_star).setVisibility(View.VISIBLE);
+
         new UserManager().updateUserScore((long) 50);
         Date today = new Date();
         Record record = new Record(null, "Done", today,

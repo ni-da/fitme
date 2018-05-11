@@ -2,13 +2,18 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nidailyas.fitme.Main2Activity"
-    android:id="@+id/activity_main2">
+    tools:context="com.example.nidailyas.fitme.Main2Activity">
 
-    <include android:id="@+id/header_main2" layout="@layout/header_main2" />
-    <include android:id="@+id/content_main2" layout="@layout/content_main2" />
+    <include
+        android:id="@+id/header_main2"
+        layout="@layout/header_main2" />
+
+    <include
+        android:id="@+id/content_main2"
+        layout="@layout/content_main2" />
 
 
 </android.support.design.widget.CoordinatorLayout>
