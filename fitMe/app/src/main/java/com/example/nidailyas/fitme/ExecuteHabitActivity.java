@@ -1,5 +1,9 @@
 package com.example.nidailyas.fitme;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -10,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
 
-public class ExecuteHabitActivity extends Main2Activity {
+public class ExecuteHabitActivity extends Main2Activity implements SensorEventListener {
     TextView circle_level;
     TextView textView_signatureName;
     TextView textView_gold_coins;
@@ -18,6 +22,12 @@ public class ExecuteHabitActivity extends Main2Activity {
     TextView textView_habitTitle;
     TextView textView_habitDesc;
     String habitId;
+
+    private TextView textView_steps;
+    private SensorManager mSensorManager;
+    private Sensor mStepCounterSensor;
+    private Sensor mStepDetectorSensor;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +39,16 @@ public class ExecuteHabitActivity extends Main2Activity {
             habitId = bundle.getString("habitId");
             showHabitInfo(habitId);
         }
+
+
+        textView_steps = (TextView) findViewById(R.id.textView_steps);
+
+        mSensorManager = (SensorManager)
+                getSystemService(getApplicationContext().SENSOR_SERVICE);
+        mStepCounterSensor = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        mStepDetectorSensor = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 
 
         textView_habitTitle = findViewById(R.id.textView_habitTitle);
@@ -104,6 +124,48 @@ public class ExecuteHabitActivity extends Main2Activity {
 
             }
         });
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        Sensor sensor = sensorEvent.sensor;
+        float[] values = sensorEvent.values;
+        int value = -1;
+
+        if (values.length > 0) {
+            value = (int) values[0];
+        }
+
+        if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+            textView_steps.setText("Step Counter Detected : " + value);
+        } else if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
+            // For test only. Only allowed value is 1.0 i.e. for step taken
+            textView_steps.setText("Step Detector Detected : " + value);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mSensorManager.registerListener(this, mStepCounterSensor,
+
+                SensorManager.SENSOR_DELAY_FASTEST);
+        mSensorManager.registerListener(this, mStepDetectorSensor,
+
+                SensorManager.SENSOR_DELAY_FASTEST);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSensorManager.unregisterListener(this, mStepCounterSensor);
+        mSensorManager.unregisterListener(this, mStepDetectorSensor);
     }
 }
 

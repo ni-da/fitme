@@ -26,6 +26,14 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="textView_inapp_desc">Your Personalised Health Guide</string>
     <string name="logout">log out</string>
+    <string name="step_counter">
+         android.hardware.sensor.stepcounter
+   </string>
+
+
+    <string name="step_detector">
+         android.hardware.sensor.stepdetector
+   </string>
 
     <string-array name="habit_names">
         <item>Select a habit</item>

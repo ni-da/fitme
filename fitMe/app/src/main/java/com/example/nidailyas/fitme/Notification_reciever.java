@@ -21,7 +21,7 @@ public class Notification_reciever extends BroadcastReceiver{
                 (context, 100, executeHabitIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "DEFAULT_CHANNEL_ID")
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(android.R.drawable.arrow_up_float)
+                .setSmallIcon(android.R.drawable.ic_media_next)
                 .setContentTitle("notification Title")
                 .setContentText("notification Text")
                 .setAutoCancel(true);
