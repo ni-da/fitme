@@ -31,7 +31,6 @@ public class RecordManager {
     }
 
 
-
     public void getUserRecordsFromDb(final MyCallback<ArrayList<Record>> myCallback) {
         final ArrayList<Record> records = new ArrayList<Record>();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -53,8 +52,50 @@ public class RecordManager {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    /*
+    new LevelManager().getScoreToNextLevel(new MyCallback<Long>() {
+                    @Override
+                    public void onCallback(Long element) {
+                        textView_gold_coins_count.setText(Long.toString(element) + "/300");
+                    }
+                }
+     */
+
+    public void getUserRecordsByHabitNameFromDb(final MyCallback<ArrayList<Record>> myCallback, String habitName) {
+
+        final ArrayList<Record> records = new ArrayList<>();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        new HabitManager().getHabitByNameFromDb(new MyCallback<Habit>() {
+            @Override
+            public void onCallback(Habit habit) {
+
+                databaseReferenceRecord.orderByChild("habitId").equalTo(habit.getHabitId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Record record = snapshot.getValue(Record.class);
+                            if (record.getUserId()
+                                    .equals(user.getUid())) {
+                                records.add(record);
+                            }
+                        }
+                        myCallback.onCallback(records);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+            }
+        }, habitName);
+
 
     }
+
 
     public void addRecordTodb(Record record) {
         String recordId = databaseReferenceRecord.push().getKey();

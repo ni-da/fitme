@@ -4,46 +4,62 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
 public class RecordsActivity extends AppCompatActivity {
-    DatabaseReference databaseReferenceRecord = FirebaseDatabase.getInstance().getReference("records");
     RecyclerView records_list;
-
+    EditText habitNameToFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_records);
         records_list = findViewById(R.id.records_list);
-        records_list.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        records_list.setLayoutManager(layoutManager);
 
-        //ArrayList<Record> data = new ArrayList<>();
-//        data.add("a");
-//        data.add("f");
-//        data.add("d");
-//        data.add("e");
-//        data.add("r");
-//        data.add("p");
+        habitNameToFilter = findViewById(R.id.editText_habitNameFilter);
 
-        //records_list.setAdapter(new RecordsAdapter(data));
+        findViewById(R.id.button_filter).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showFilterdRecords(habitNameToFilter.getText().toString());
+            }
+        });
+
+        showAllRecords();
+
+
+    }
+
+    private void showAllRecords() {
         new RecordManager().getUserRecordsFromDb(new MyCallback<ArrayList<Record>>() {
             @Override
             public void onCallback(ArrayList<Record> records) {
                 records_list.setAdapter(new RecordsAdapter(records));
-
-//                for (Record record : records) {
-//                    //Toast.makeText(getApplicationContext(), record.getRecordId(), Toast.LENGTH_SHORT).show();
-//
-//                }
             }
         });
+    }
 
+    private void showFilterdRecords(String habitToFilter) {
+        String formatedHabitName = formathabitName(habitToFilter);
+        new RecordManager().getUserRecordsByHabitNameFromDb(new MyCallback<ArrayList<Record>>() {
+            @Override
+            public void onCallback(ArrayList<Record> records) {
+                records_list.setAdapter(new RecordsAdapter(records));
+            }
+        }, formatedHabitName);
+    }
 
+    private String formathabitName(String habitName) {
+        habitName = habitName.toLowerCase();
+        habitName = habitName.substring(0, 1).
+                toUpperCase() + habitName.substring(1);
+        return habitName;
     }
 }
