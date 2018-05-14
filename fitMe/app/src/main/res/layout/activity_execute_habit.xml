@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_execute_habit"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/activity_execute_habit">
+    android:layout_height="match_parent">
 
 
     <LinearLayout
@@ -11,53 +11,70 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical">
+
         <include layout="@layout/header_main2" />
 
 
-
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView_habitTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Hello there"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/textView_habitDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Hello there"
-            android:textSize="18sp" />
-
-            <ImageView
+            <TextView
+                android:id="@+id/textView_habitTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:id="@+id/imageView_smiely"
-                android:src="@drawable/ic_sentiment_satisfied_black_24dp"/>
+                android:layout_weight="1"
+                android:text="Hello there"
+                android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/button_startHabit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mark done!"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textView_habitDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Hello there"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView_smiely"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sentiment_satisfied_black_24dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Weight"
+                android:inputType="numberDecimal"
+                android:id="@+id/editText_executeHabit_weight"
+                android:visibility="invisible"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Water in liters"
+                android:inputType="numberDecimal"
+                android:id="@+id/editText_executeHabit_water"
+                android:visibility="invisible"/>
+
+            <Button
+                android:id="@+id/button_startHabit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mark done!"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/textView_steps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:visibility="invisible"/>
 
 
         </LinearLayout>

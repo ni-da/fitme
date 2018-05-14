@@ -8,26 +8,28 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
 
 public class ExecuteHabitActivity extends Main2Activity
         implements SensorEventListener {
-    TextView circle_level;
-    TextView textView_signatureName;
-    TextView textView_gold_coins;
-    TextView textView_gold_coins_count;
-    TextView textView_habitTitle;
-    TextView textView_habitDesc;
-    String habitId;
+    private TextView circle_level;
+    private TextView textView_signatureName;
+    private TextView textView_gold_coins;
+    private TextView textView_gold_coins_count;
+    private TextView textView_habitTitle;
+    private TextView textView_habitDesc;
+    private String habitId;
 
     private TextView textView_steps;
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private Sensor mStepDetectorSensor;
+
+    private EditText editText_executeHabit_weight;
+    private EditText editText_executeHabit_water;
 
 
     @Override
@@ -42,7 +44,7 @@ public class ExecuteHabitActivity extends Main2Activity
         }
 
 
-        textView_steps = (TextView) findViewById(R.id.textView_steps);
+        textView_steps = findViewById(R.id.textView_steps);
 
         mSensorManager = (SensorManager)
                 getSystemService(getApplicationContext().SENSOR_SERVICE);
@@ -53,9 +55,13 @@ public class ExecuteHabitActivity extends Main2Activity
 
 
         textView_habitTitle = findViewById(R.id.textView_habitTitle);
-        //textView_habitTitle.setText(key);
         textView_habitDesc = findViewById(R.id.textView_habitDesc);
-        //textView_habitDesc.setText(value);
+
+
+        editText_executeHabit_weight = findViewById(R.id.editText_executeHabit_weight);
+        editText_executeHabit_water = findViewById(R.id.editText_executeHabit_water);
+
+
         Button button_startHabit = findViewById(R.id.button_startHabit);
 
         button_startHabit.setOnClickListener(new View.OnClickListener() {
@@ -81,22 +87,63 @@ public class ExecuteHabitActivity extends Main2Activity
     }
 
     public void executeHabit() {
-//        findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
+        String result = null;
+        //        findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
         findViewById(R.id.animation_view_star).setVisibility(View.VISIBLE);
 
         new UserManager().updateUserScore((long) 50);
         Date today = new Date();
-        Record record = new Record(null, "Done", today,
-                FirebaseAuth.getInstance().getCurrentUser().getUid(), habitId);
+
+        // check which type
+        switch (habitId) {
+            case "habitId2": //run
+                // dosomething
+                break;
+            case "habitId1": // walk
+                break;
+            case "-LC9ugzpF6S_Gvx5VL_M": //weight
+                result = editText_executeHabit_weight.getText().toString();
+                break;
+            case "habitId3": //bp
+                break;
+            case "-LC9ytpajxQIBsna4E-p": // drink
+                result = editText_executeHabit_water.getText().toString();
+                break;
+            default:
+        }
+
+
+        Record record = new Record(null, result, today,
+                new UserManager().getCurrentUserIdFromDb(), habitId);
         new RecordManager().addRecordTodb(record);
     }
 
-    public void showHabitInfo(String habitId) {
+    public void showHabitInfo(final String habitId) {
+
         new HabitManager().getHabitByIdFromDb(new MyCallback<Habit>() {
             @Override
-            public void onCallback(Habit element) {
-                textView_habitTitle.setText(element.getHabitName());
-                textView_habitDesc.setText(element.getDescription());
+            public void onCallback(Habit habit) {
+                textView_habitTitle.setText(habit.getHabitName());
+                textView_habitDesc.setText(habit.getDescription());
+                String habitName = habit.getHabitName();
+                switch (habitName) {
+                    case "Run":
+                        // dosomething
+                        break;
+                    case "Walk":
+                        textView_steps.setVisibility(View.VISIBLE);
+                        break;
+                    case "Weight":
+                        editText_executeHabit_weight.setVisibility(View.VISIBLE);
+                        break;
+                    case "Bp":
+                        break;
+                    case "Drink water":
+                        editText_executeHabit_water.setVisibility(View.VISIBLE);
+                        break;
+
+                }
+
             }
         }, habitId);
     }
