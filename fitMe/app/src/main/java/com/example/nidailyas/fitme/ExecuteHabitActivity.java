@@ -23,6 +23,7 @@ public class ExecuteHabitActivity extends Main2Activity
     private TextView textView_habitTitle;
     private TextView textView_habitDesc;
     private String habitId;
+    private Button button_startHabit;
     private int steps;
     private int value = -1;
 
@@ -76,7 +77,7 @@ public class ExecuteHabitActivity extends Main2Activity
         editText_executeHabit_run_min = findViewById(R.id.editText_executeHabit_run_min);
 
 
-        Button button_startHabit = findViewById(R.id.button_startHabit);
+        button_startHabit = findViewById(R.id.button_startHabit);
 
         button_startHabit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +102,7 @@ public class ExecuteHabitActivity extends Main2Activity
     }
 
     public void executeHabit() {
+        button_startHabit.setEnabled(false);
         String result = null;
         //        findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
         findViewById(R.id.animation_view_star).setVisibility(View.VISIBLE);
@@ -110,6 +112,7 @@ public class ExecuteHabitActivity extends Main2Activity
             case "habitId2": //run
                 result = editText_executeHabit_run_min.getText().toString() +
                         " min;" + editText_executeHabit_run_km.getText().toString() + " km";
+
                 break;
             case "habitId1": // walk
                 result = editText_executeHabit_run_min.getText().toString() + " min;"
