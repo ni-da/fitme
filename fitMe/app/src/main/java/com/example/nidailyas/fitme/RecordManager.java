@@ -72,23 +72,24 @@ public class RecordManager {
             @Override
             public void onCallback(Habit habit) {
 
-                databaseReferenceRecord.orderByChild("habitId").equalTo(habit.getHabitId()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Record record = snapshot.getValue(Record.class);
-                            if (record.getUserId()
-                                    .equals(user.getUid())) {
-                                records.add(record);
+                databaseReferenceRecord.orderByChild("habitId").equalTo(habit.getHabitId()).
+                        addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    Record record = snapshot.getValue(Record.class);
+                                    if (record.getUserId()
+                                            .equals(user.getUid())) {
+                                        records.add(record);
+                                    }
+                                }
+                                myCallback.onCallback(records);
                             }
-                        }
-                        myCallback.onCallback(records);
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                            }
+                        });
 
             }
         }, habitName);
@@ -116,7 +117,7 @@ public class RecordManager {
  }
      */
 
-    public void removeRecordFromDb(String recordId){
+    public void removeRecordFromDb(String recordId) {
         databaseReferenceRecord.child(recordId).removeValue();
 
     }
