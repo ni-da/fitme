@@ -30,6 +30,14 @@ public class UserManager {
     }
 
     public void updateUserScore(final Long score) {
+
+//        if (habitType == "Weight") {
+//            if (result + 3 < idealWeight) {
+//                score = -50;
+//            } else {
+//                score = 50;
+//            }
+//        }
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReferenceUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

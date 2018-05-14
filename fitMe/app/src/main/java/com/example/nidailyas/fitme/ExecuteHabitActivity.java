@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -30,7 +31,10 @@ public class ExecuteHabitActivity extends Main2Activity
 
     private EditText editText_executeHabit_weight;
     private EditText editText_executeHabit_water;
-
+    private LinearLayout linLayout_executeHabit_bp;
+    private EditText editText_executeHabit_bp_U;
+    private EditText editText_executeHabit_bp_L;
+    private EditText editText_executeHabit_run;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +65,10 @@ public class ExecuteHabitActivity extends Main2Activity
         editText_executeHabit_weight = findViewById(R.id.editText_executeHabit_weight);
         editText_executeHabit_water = findViewById(R.id.editText_executeHabit_water);
 
+        linLayout_executeHabit_bp = findViewById(R.id.linLayout_executeHabit_bp);
+        editText_executeHabit_bp_U = findViewById(R.id.editText_executeHabit_bp_U);
+        editText_executeHabit_bp_L = findViewById(R.id.editText_executeHabit_bp_L);
+        editText_executeHabit_run = findViewById(R.id.editText_executeHabit_run);
 
         Button button_startHabit = findViewById(R.id.button_startHabit);
 
@@ -90,29 +98,28 @@ public class ExecuteHabitActivity extends Main2Activity
         String result = null;
         //        findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
         findViewById(R.id.animation_view_star).setVisibility(View.VISIBLE);
-
-        new UserManager().updateUserScore((long) 50);
         Date today = new Date();
 
         // check which type
         switch (habitId) {
             case "habitId2": //run
-                // dosomething
+                result = editText_executeHabit_run.getText().toString() + " km";
                 break;
             case "habitId1": // walk
+                result = textView_steps.getText().toString() + " steps";
                 break;
             case "-LC9ugzpF6S_Gvx5VL_M": //weight
-                result = editText_executeHabit_weight.getText().toString();
+                result = editText_executeHabit_weight.getText().toString() + " kg";
                 break;
             case "habitId3": //bp
+                result = editText_executeHabit_bp_U.getText().toString() + ";" + editText_executeHabit_bp_L.getText().toString();
                 break;
             case "-LC9ytpajxQIBsna4E-p": // drink
-                result = editText_executeHabit_water.getText().toString();
+                result = editText_executeHabit_water.getText().toString() + " liter";
                 break;
             default:
         }
-
-
+        new UserManager().updateUserScore((long) 50);
         Record record = new Record(null, result, today,
                 new UserManager().getCurrentUserIdFromDb(), habitId);
         new RecordManager().addRecordTodb(record);
@@ -128,7 +135,7 @@ public class ExecuteHabitActivity extends Main2Activity
                 String habitName = habit.getHabitName();
                 switch (habitName) {
                     case "Run":
-                        // dosomething
+                        editText_executeHabit_run.setVisibility(View.VISIBLE);
                         break;
                     case "Walk":
                         textView_steps.setVisibility(View.VISIBLE);
@@ -137,6 +144,7 @@ public class ExecuteHabitActivity extends Main2Activity
                         editText_executeHabit_weight.setVisibility(View.VISIBLE);
                         break;
                     case "Bp":
+                        linLayout_executeHabit_bp.setVisibility(View.VISIBLE);
                         break;
                     case "Drink water":
                         editText_executeHabit_water.setVisibility(View.VISIBLE);

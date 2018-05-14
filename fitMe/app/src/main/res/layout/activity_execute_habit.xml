@@ -60,6 +60,49 @@
                 android:inputType="numberDecimal"
                 android:id="@+id/editText_executeHabit_water"
                 android:visibility="invisible"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Distence in km's"
+                android:inputType="numberDecimal"
+                android:id="@+id/editText_executeHabit_run"
+                android:visibility="invisible"/>
+
+            <LinearLayout
+                android:id="@+id/linLayout_executeHabit_bp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+                <TextView
+                    android:id="@+id/textView_bp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bloodpressure" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:id="@+id/editText_executeHabit_bp_U"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_dec"
+                    android:inputType="numberDecimal" />
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:id="@+id/editText_executeHabit_bp_L"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_dec"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/button_startHabit"
