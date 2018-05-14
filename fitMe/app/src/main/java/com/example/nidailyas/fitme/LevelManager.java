@@ -42,6 +42,13 @@ public class LevelManager {
     }
 
 
+    /**
+     * returns a callback that includes the score that the user still needs to get to the next level.
+     *
+     * @param myCallback
+     * @param levelId
+     * @param score
+     */
     public void getScoreToNextLevel(final MyCallback<Long> myCallback, String levelId, final Long score) {
         databaseReferenceLevel.child(levelId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -50,6 +57,31 @@ public class LevelManager {
                     Level level = dataSnapshot.getValue(Level.class);
                     long scoreToGO = level.getMaxScore() - score;
                     myCallback.onCallback(scoreToGO);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    /**
+     * returns a callback that includes the score that the user have earned to increase to the next level.
+     *
+     * @param myCallback
+     * @param levelId
+     * @param score
+     */
+    public void getScoreEarnedToIncreaseNextLevel(final MyCallback<String> myCallback, String levelId, final Long score) {
+        databaseReferenceLevel.child(levelId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Level level = dataSnapshot.getValue(Level.class);
+                    long scoreToGO = level.getMaxScore() - score;
+                    long scoreEarned = score - (level.getMaxScore() - level.getMinScore());
+                    myCallback.onCallback(Long.toString(scoreEarned) + "/" + Long.toString((level.getMaxScore() - level.getMinScore())));
                 }
             }
 

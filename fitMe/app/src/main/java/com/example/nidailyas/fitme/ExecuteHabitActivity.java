@@ -23,6 +23,9 @@ public class ExecuteHabitActivity extends Main2Activity
     private TextView textView_habitTitle;
     private TextView textView_habitDesc;
     private String habitId;
+    private int steps;
+    private int value = -1;
+
 
     private TextView textView_steps;
     private SensorManager mSensorManager;
@@ -34,7 +37,8 @@ public class ExecuteHabitActivity extends Main2Activity
     private LinearLayout linLayout_executeHabit_bp;
     private EditText editText_executeHabit_bp_U;
     private EditText editText_executeHabit_bp_L;
-    private EditText editText_executeHabit_run;
+    private EditText editText_executeHabit_run_km;
+    private EditText editText_executeHabit_run_min;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +72,9 @@ public class ExecuteHabitActivity extends Main2Activity
         linLayout_executeHabit_bp = findViewById(R.id.linLayout_executeHabit_bp);
         editText_executeHabit_bp_U = findViewById(R.id.editText_executeHabit_bp_U);
         editText_executeHabit_bp_L = findViewById(R.id.editText_executeHabit_bp_L);
-        editText_executeHabit_run = findViewById(R.id.editText_executeHabit_run);
+        editText_executeHabit_run_km = findViewById(R.id.editText_executeHabit_run_km);
+        editText_executeHabit_run_min = findViewById(R.id.editText_executeHabit_run_min);
+
 
         Button button_startHabit = findViewById(R.id.button_startHabit);
 
@@ -102,16 +108,20 @@ public class ExecuteHabitActivity extends Main2Activity
         // check which type
         switch (habitId) {
             case "habitId2": //run
-                result = editText_executeHabit_run.getText().toString() + " km";
+                result = editText_executeHabit_run_min.getText().toString() +
+                        " min;" + editText_executeHabit_run_km.getText().toString() + " km";
                 break;
             case "habitId1": // walk
-                result = textView_steps.getText().toString() + " steps";
+                result = editText_executeHabit_run_min.getText().toString() + " min;"
+                        + editText_executeHabit_run_km.getText().toString() + " km;"
+                        + String.valueOf(steps) + " steps";
                 break;
             case "-LC9ugzpF6S_Gvx5VL_M": //weight
                 result = editText_executeHabit_weight.getText().toString() + " kg";
                 break;
             case "habitId3": //bp
-                result = editText_executeHabit_bp_U.getText().toString() + ";" + editText_executeHabit_bp_L.getText().toString();
+                result = editText_executeHabit_bp_U.getText().toString() + ";" +
+                        editText_executeHabit_bp_L.getText().toString();
                 break;
             case "-LC9ytpajxQIBsna4E-p": // drink
                 result = editText_executeHabit_water.getText().toString() + " liter";
@@ -134,9 +144,12 @@ public class ExecuteHabitActivity extends Main2Activity
                 String habitName = habit.getHabitName();
                 switch (habitName) {
                     case "Run":
-                        editText_executeHabit_run.setVisibility(View.VISIBLE);
+                        editText_executeHabit_run_km.setVisibility(View.VISIBLE);
+                        editText_executeHabit_run_min.setVisibility(View.VISIBLE);
                         break;
                     case "Walk":
+                        editText_executeHabit_run_km.setVisibility(View.VISIBLE);
+                        editText_executeHabit_run_min.setVisibility(View.VISIBLE);
                         textView_steps.setVisibility(View.VISIBLE);
                         break;
                     case "Weight":
@@ -172,10 +185,10 @@ public class ExecuteHabitActivity extends Main2Activity
                         textView_signatureName.setText(level.getSignatureName());
                     }
                 }, user.getLevelId());
-                new LevelManager().getScoreToNextLevel(new MyCallback<Long>() {
+                new LevelManager().getScoreEarnedToIncreaseNextLevel(new MyCallback<String>() {
                     @Override
-                    public void onCallback(Long element) {
-                        textView_gold_coins_count.setText(Long.toString(element) + "/300");
+                    public void onCallback(String element) {
+                        textView_gold_coins_count.setText(element);
                     }
                 }, user.getLevelId(), user.getScore());
 
@@ -187,13 +200,13 @@ public class ExecuteHabitActivity extends Main2Activity
     public void onSensorChanged(SensorEvent sensorEvent) {
         Sensor sensor = sensorEvent.sensor;
         float[] values = sensorEvent.values;
-        int value = -1;
 
         if (values.length > 0) {
             value = (int) values[0];
         }
 
         if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+            steps = value;
             textView_steps.setText("Step Counter Detected : " + value);
         } else if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             // For test only. Only allowed value is 1.0 i.e. for step taken

@@ -99,10 +99,10 @@ public class Main2Activity extends AppCompatActivity {
                         textView_signatureName.setText(level.getSignatureName());
                     }
                 }, user.getLevelId());
-                new LevelManager().getScoreToNextLevel(new MyCallback<Long>() {
+                new LevelManager().getScoreEarnedToIncreaseNextLevel(new MyCallback<String>() {
                     @Override
-                    public void onCallback(Long element) {
-                        textView_gold_coins_count.setText(Long.toString(element) + "/300");
+                    public void onCallback(String element) {
+                        textView_gold_coins_count.setText(element);
                     }
                 }, user.getLevelId(), user.getScore());
 

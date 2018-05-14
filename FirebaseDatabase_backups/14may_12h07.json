@@ -1,0 +1,1209 @@
+{
+  "habitFrequencyTimings" : {
+    "-LC9TjPEfgV_dHERqlLu" : {
+      "habitFrequencyTimingId" : "-LC9TjPEfgV_dHERqlLu",
+      "habitId" : "habitId1",
+      "times" : [ "4:35", "5:36", "19:36" ]
+    },
+    "-LC9qRp0U_YB_WhnlDqS" : {
+      "habitFrequencyTimingId" : "-LC9qRp0U_YB_WhnlDqS",
+      "habitId" : "habitId3",
+      "times" : [ "17:18", "16:17" ]
+    },
+    "-LC9ugzwLT4CBxRe9nxY" : {
+      "habitFrequencyTimingId" : "-LC9ugzwLT4CBxRe9nxY",
+      "habitId" : "-LC9ugzpF6S_Gvx5VL_M",
+      "times" : [ "18:37", "5:36" ]
+    },
+    "-LC9ytpfE4JW-YFlzMM7" : {
+      "habitFrequencyTimingId" : "-LC9ytpfE4JW-YFlzMM7",
+      "habitId" : "-LC9ytpajxQIBsna4E-p",
+      "times" : [ "18:55", "4:54", "15:53" ]
+    },
+    "habitFrequencies123" : {
+      "habitFrequencyTimingId" : "habitFrequencies123",
+      "habitId" : "habitId1",
+      "times" : [ "8:00", "19:00" ]
+    },
+    "habitFrequencies1234" : {
+      "habitFrequencyTimingId" : "habitFrequencies1234",
+      "habitId" : "habitId2",
+      "times" : [ "10:00", "17:00" ]
+    }
+  },
+  "habits" : {
+    "-LC9ugzpF6S_Gvx5VL_M" : {
+      "description" : "check weight",
+      "habitId" : "-LC9ugzpF6S_Gvx5VL_M",
+      "habitName" : "Weight"
+    },
+    "-LC9ytpajxQIBsna4E-p" : {
+      "description" : "drink a lot of water.",
+      "habitId" : "-LC9ytpajxQIBsna4E-p",
+      "habitName" : "Drink water"
+    },
+    "habitId1" : {
+      "description" : "Walk for almost 25 mins.",
+      "habitId" : "habitId1",
+      "habitName" : "Walk"
+    },
+    "habitId2" : {
+      "description" : "Run for almost 10 min",
+      "habitId" : "habitId2",
+      "habitName" : "Run"
+    },
+    "habitId3" : {
+      "description" : "Check bp",
+      "habitId" : "habitId3",
+      "habitName" : "Bp"
+    }
+  },
+  "levels" : [ null, {
+    "levelId" : "1",
+    "maxScore" : 300,
+    "minScore" : 0,
+    "signatureName" : "Newbie"
+  }, {
+    "levelId" : "2",
+    "maxScore" : 600,
+    "minScore" : 300,
+    "signatureName" : "Beginner"
+  }, {
+    "levelId" : "3",
+    "maxScore" : 900,
+    "minScore" : 600,
+    "signatureName" : "Talented"
+  }, {
+    "levelId" : "4",
+    "maxScore" : 1100,
+    "minScore" : 900,
+    "signatureName" : "Semi-pro"
+  }, {
+    "levelId" : "5",
+    "maxScore" : 1300,
+    "minScore" : 1100,
+    "signatureName" : "Pro"
+  }, {
+    "levelId" : "6",
+    "maxScore" : 1500,
+    "minScore" : 1300,
+    "signatureName" : "Experienced"
+  }, {
+    "levelId" : "7",
+    "maxScore" : 2000,
+    "minScore" : 1500,
+    "signatureName" : "Expert"
+  } ],
+  "plannings" : {
+    "123abc" : {
+      "habitFrequencies" : [ "habitFrequencies123", "habitFrequencies1234", "-LC9qRp0U_YB_WhnlDqS", "-LC9ugzwLT4CBxRe9nxY", "-LC9ytpfE4JW-YFlzMM7" ],
+      "planningId" : "123abc"
+    }
+  },
+  "records" : {
+    "-LCRCAqord0D9cw0Jrlx" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 3,
+        "minutes" : 12,
+        "month" : 4,
+        "seconds" : 33,
+        "time" : 1526260353539,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "-LC9ugzpF6S_Gvx5VL_M",
+      "recordId" : "-LCRCAqord0D9cw0Jrlx",
+      "result" : "52.3 kg",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCRD8VmRoT5li2FuSPY" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 3,
+        "minutes" : 16,
+        "month" : 4,
+        "seconds" : 46,
+        "time" : 1526260606052,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "-LC9ytpajxQIBsna4E-p",
+      "recordId" : "-LCRD8VmRoT5li2FuSPY",
+      "result" : "2 liter",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSSfgnZ9Jz1eud29kb" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 9,
+        "minutes" : 4,
+        "month" : 4,
+        "seconds" : 15,
+        "time" : 1526281455458,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCSSfgnZ9Jz1eud29kb",
+      "result" : "18;7",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSU2TRdr-HaUWshMl3" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 9,
+        "minutes" : 10,
+        "month" : 4,
+        "seconds" : 14,
+        "time" : 1526281814991,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId2",
+      "recordId" : "-LCSU2TRdr-HaUWshMl3",
+      "result" : "1 km",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSVMJubT3bNC49ibD5" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 9,
+        "minutes" : 15,
+        "month" : 4,
+        "seconds" : 58,
+        "time" : 1526282158438,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "-LC9ytpajxQIBsna4E-p",
+      "recordId" : "-LCSVMJubT3bNC49ibD5",
+      "result" : "1.5 liter",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSZE2ZuzDXK0F8rDKb" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 9,
+        "minutes" : 32,
+        "month" : 4,
+        "seconds" : 53,
+        "time" : 1526283173140,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "-LC9ugzpF6S_Gvx5VL_M",
+      "recordId" : "-LCSZE2ZuzDXK0F8rDKb",
+      "result" : "54.9 kg",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSpVYJAkBN1Q94xVJH" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 10,
+        "minutes" : 48,
+        "month" : 4,
+        "seconds" : 21,
+        "time" : 1526287701246,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId2",
+      "recordId" : "-LCSpVYJAkBN1Q94xVJH",
+      "result" : "3 km",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSpXREpmuOvQPEC02S" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 10,
+        "minutes" : 48,
+        "month" : 4,
+        "seconds" : 28,
+        "time" : 1526287708996,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSpXREpmuOvQPEC02S",
+      "result" : "111 steps;2 km",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvL3il5PrnkxaDUi8" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 51,
+        "time" : 1526289231203,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvL3il5PrnkxaDUi8",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvLU4qSZd3G_VIddn" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 52,
+        "time" : 1526289232888,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvLU4qSZd3G_VIddn",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvLeWYZhWR-n53UhN" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 53,
+        "time" : 1526289233620,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvLeWYZhWR-n53UhN",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvLoVCUXC8Z6MMOu5" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 54,
+        "time" : 1526289234258,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvLoVCUXC8Z6MMOu5",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvLxY5Lbs78Y_K1hH" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 54,
+        "time" : 1526289234839,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvLxY5Lbs78Y_K1hH",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvM5-hfTCYIZcv0TT" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 55,
+        "time" : 1526289235379,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvM5-hfTCYIZcv0TT",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvMGJE88kXIlATpvT" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 56,
+        "time" : 1526289236103,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvMGJE88kXIlATpvT",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvMgCz5g8Pu3lU71L" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 57,
+        "time" : 1526289237822,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvMgCz5g8Pu3lU71L",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvMo2ogW4O2apTfDg" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 58,
+        "time" : 1526289238327,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvMo2ogW4O2apTfDg",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvMv8z_GT9__aFxJm" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 58,
+        "time" : 1526289238781,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvMv8z_GT9__aFxJm",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvN25oqVqbeQh_BNV" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 59,
+        "time" : 1526289239288,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvN25oqVqbeQh_BNV",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvNAMjCULtPC6Eyuq" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 13,
+        "month" : 4,
+        "seconds" : 59,
+        "time" : 1526289239818,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvNAMjCULtPC6Eyuq",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvNIalNnn33cMi1rm" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 0,
+        "time" : 1526289240346,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvNIalNnn33cMi1rm",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvNRA1qeGZ9Urxxr3" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 0,
+        "time" : 1526289240894,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvNRA1qeGZ9Urxxr3",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvNZLQASCVyTFi_Sp" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 1,
+        "time" : 1526289241419,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvNZLQASCVyTFi_Sp",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvNg6XHPdF2p1DS9N" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 1,
+        "time" : 1526289241915,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvNg6XHPdF2p1DS9N",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvNnONn4NkKzBG9iI" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 2,
+        "time" : 1526289242380,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvNnONn4NkKzBG9iI",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvNuHZ7_Mdn2-corN" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 2,
+        "time" : 1526289242820,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvNuHZ7_Mdn2-corN",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvO0gNf_O6M1X9_VM" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 3,
+        "time" : 1526289243296,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvO0gNf_O6M1X9_VM",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvO9J8sYPo1GeAsEa" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 3,
+        "time" : 1526289243846,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvO9J8sYPo1GeAsEa",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvOICj-bPGa5y8N4R" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 4,
+        "time" : 1526289244416,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvOICj-bPGa5y8N4R",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvOQAiHmjHFO1hXW2" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 4,
+        "time" : 1526289244926,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvOQAiHmjHFO1hXW2",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvOYJ4vuUeGAvZm2f" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526289245448,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvOYJ4vuUeGAvZm2f",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvOeUDeyA7-NIEgey" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526289245907,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvOeUDeyA7-NIEgey",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvOn4nHk7dlTHZpEg" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 6,
+        "time" : 1526289246457,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvOn4nHk7dlTHZpEg",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvP1Q07A1gvJQ0A_8" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 7,
+        "time" : 1526289247436,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvP1Q07A1gvJQ0A_8",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvPQIIvTalNcCtv0Z" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 9,
+        "time" : 1526289249030,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvPQIIvTalNcCtv0Z",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvPbiKVyFpnj25C0U" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 9,
+        "time" : 1526289249825,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvPbiKVyFpnj25C0U",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvPjnd93MoT4WxUEp" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 10,
+        "time" : 1526289250344,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvPjnd93MoT4WxUEp",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvPuKcD3Z8_suuQKE" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 11,
+        "time" : 1526289251016,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvPuKcD3Z8_suuQKE",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvQ08Mf61Ngcv-KN9" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 11,
+        "time" : 1526289251454,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvQ08Mf61Ngcv-KN9",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvQ4-DfAz3-rpEfo5" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 11,
+        "time" : 1526289251700,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvQ4-DfAz3-rpEfo5",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvQ6cm-HqB3VgBUVx" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 11,
+        "time" : 1526289251869,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvQ6cm-HqB3VgBUVx",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSvQ9LskiSZXbg2Opm" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 14,
+        "month" : 4,
+        "seconds" : 12,
+        "time" : 1526289252042,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCSvQ9LskiSZXbg2Opm",
+      "result" : "Step Counter Detected : 111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSx22ZovNlYP8ahV7Q" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 21,
+        "month" : 4,
+        "seconds" : 17,
+        "time" : 1526289677586,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCSx22ZovNlYP8ahV7Q",
+      "result" : "17;9",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCSx3OUeFKNlPvzXUf9" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 21,
+        "month" : 4,
+        "seconds" : 23,
+        "time" : 1526289683089,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCSx3OUeFKNlPvzXUf9",
+      "result" : "17;9",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT-zvEWJzDDzAjSQbc" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 38,
+        "month" : 4,
+        "seconds" : 33,
+        "time" : 1526290713328,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT-zvEWJzDDzAjSQbc",
+      "result" : "13;6",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0G3yRkHYjx3_v-4r" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 39,
+        "month" : 4,
+        "seconds" : 43,
+        "time" : 1526290783583,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0G3yRkHYjx3_v-4r",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0GNK9QH1V7XDwguN" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 39,
+        "month" : 4,
+        "seconds" : 44,
+        "time" : 1526290784831,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0GNK9QH1V7XDwguN",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0Gf-Go875wLvBiGO" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 39,
+        "month" : 4,
+        "seconds" : 46,
+        "time" : 1526290786024,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0Gf-Go875wLvBiGO",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0HZQQyNHxqombjcX" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 39,
+        "month" : 4,
+        "seconds" : 49,
+        "time" : 1526290789701,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0HZQQyNHxqombjcX",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0JuogksrjJZTF_5g" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 39,
+        "month" : 4,
+        "seconds" : 59,
+        "time" : 1526290799324,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0JuogksrjJZTF_5g",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0KESl9alvUWMz3lU" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 40,
+        "month" : 4,
+        "seconds" : 0,
+        "time" : 1526290800649,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0KESl9alvUWMz3lU",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0KVzWMwcGpf6Tl8C" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 40,
+        "month" : 4,
+        "seconds" : 1,
+        "time" : 1526290801769,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0KVzWMwcGpf6Tl8C",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0MYcfYuaxwwA9ErR" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 40,
+        "month" : 4,
+        "seconds" : 10,
+        "time" : 1526290810129,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0MYcfYuaxwwA9ErR",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT0N5Rvj_kKBZBftyp" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 40,
+        "month" : 4,
+        "seconds" : 12,
+        "time" : 1526290812358,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId3",
+      "recordId" : "-LCT0N5Rvj_kKBZBftyp",
+      "result" : "16;4",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT3YsuGjiyPZPUjWNY" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 11,
+        "minutes" : 54,
+        "month" : 4,
+        "seconds" : 7,
+        "time" : 1526291647068,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId2",
+      "recordId" : "-LCT3YsuGjiyPZPUjWNY",
+      "result" : "30 min;1.2 km",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT5G5Rt2Vzt528q_bX" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 12,
+        "minutes" : 1,
+        "month" : 4,
+        "seconds" : 34,
+        "time" : 1526292094395,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCT5G5Rt2Vzt528q_bX",
+      "result" : "20 min;2 km;111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT5nmu0sU8VpBCGKVj" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 12,
+        "minutes" : 3,
+        "month" : 4,
+        "seconds" : 56,
+        "time" : 1526292236502,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCT5nmu0sU8VpBCGKVj",
+      "result" : "2 min;2 km;111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT5vQZxWo6I-WhS0B_" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 12,
+        "minutes" : 4,
+        "month" : 4,
+        "seconds" : 27,
+        "time" : 1526292267787,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCT5vQZxWo6I-WhS0B_",
+      "result" : " min; km;111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT5wo6NDcyKAVWSeKC" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 12,
+        "minutes" : 4,
+        "month" : 4,
+        "seconds" : 33,
+        "time" : 1526292273454,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCT5wo6NDcyKAVWSeKC",
+      "result" : "3 min;3 km;111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT6Kt9QSJiC6NGalQI" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 12,
+        "minutes" : 6,
+        "month" : 4,
+        "seconds" : 16,
+        "time" : 1526292376179,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCT6Kt9QSJiC6NGalQI",
+      "result" : "3 min;3 km;111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT6LqCXDURlFUSixWF" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 12,
+        "minutes" : 6,
+        "month" : 4,
+        "seconds" : 20,
+        "time" : 1526292380083,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCT6LqCXDURlFUSixWF",
+      "result" : "3 min;3 km;111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    },
+    "-LCT6M4jIfsaBXDSp26e" : {
+      "examineDateTime" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 12,
+        "minutes" : 6,
+        "month" : 4,
+        "seconds" : 21,
+        "time" : 1526292381080,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "habitId" : "habitId1",
+      "recordId" : "-LCT6M4jIfsaBXDSp26e",
+      "result" : "3 min;3 km;111 steps",
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+    }
+  },
+  "users" : {
+    "4YhI1n2nAkUkW4IWuIxWq8EwMSj1" : {
+      "begin_bp_lower" : 0,
+      "begin_bp_upper" : 3.6,
+      "dateOfBirth" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "gender" : "F",
+      "height" : 14.3,
+      "levelId" : "1",
+      "name" : "Nida",
+      "planningId" : "123abc",
+      "profileImageUrl" : "https://firebasestorage.googleapis.com/v0/b/fitme-01.appspot.com/o/profilepics%2F1525818945383.jpg?alt=media&token=1ff8fa88-fff5-4722-add7-7ae3750c70a2",
+      "score" : 0,
+      "userId" : "4YhI1n2nAkUkW4IWuIxWq8EwMSj1",
+      "weight" : 14.3
+    },
+    "h0w2C7aT34eaFym2BmCL4wgAilA2" : {
+      "begin_bp_lower" : 0,
+      "begin_bp_upper" : 3.6,
+      "dateOfBirth" : {
+        "date" : 14,
+        "day" : 1,
+        "hours" : 0,
+        "minutes" : 30,
+        "month" : 4,
+        "seconds" : 5,
+        "time" : 1526250605528,
+        "timezoneOffset" : -120,
+        "year" : 118
+      },
+      "gender" : "F",
+      "height" : 14.3,
+      "levelId" : "3",
+      "name" : "Nida",
+      "planningId" : "123abc",
+      "profileImageUrl" : "https://firebasestorage.googleapis.com/v0/b/fitme-01.appspot.com/o/profilepics%2F1525818945383.jpg?alt=media&token=1ff8fa88-fff5-4722-add7-7ae3750c70a2",
+      "score" : 650,
+      "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2",
+      "weight" : 14.3
+    }
+  }
+}

@@ -63,9 +63,16 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:hint="Duration in min"
+                android:inputType="numberDecimal"
+                android:id="@+id/editText_executeHabit_run_min"
+                android:visibility="invisible"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:hint="Distence in km's"
                 android:inputType="numberDecimal"
-                android:id="@+id/editText_executeHabit_run"
+                android:id="@+id/editText_executeHabit_run_km"
                 android:visibility="invisible"/>
 
             <LinearLayout
