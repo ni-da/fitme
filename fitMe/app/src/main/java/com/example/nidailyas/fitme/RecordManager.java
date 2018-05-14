@@ -102,4 +102,24 @@ public class RecordManager {
         record.recordId = recordId;
         databaseReferenceRecord.child(recordId).setValue(record);
     }
+
+    /*
+    mdatabaseReference.child("users").orderByKey().equalTo(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+  @Override
+  public void onDataChange(DataSnapshot dataSnapshot) {
+
+  for (DataSnapshot postsnapshot :dataSnapshot.getChildren()) {
+
+    String key = postsnapshot.getKey();
+    dataSnapshot.getRef().removeValue();
+
+ }
+     */
+
+    public void removeRecordFromDb(String recordId){
+        databaseReferenceRecord.child(recordId).removeValue();
+
+    }
+
+
 }

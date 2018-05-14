@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.EditText;
 
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 public class RecordsActivity extends AppCompatActivity {
     RecyclerView records_list;
     EditText habitNameToFilter;
+    ArrayList<Record> allRecords = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,7 @@ public class RecordsActivity extends AppCompatActivity {
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         records_list.setLayoutManager(layoutManager);
+
 
         habitNameToFilter = findViewById(R.id.editText_habitNameFilter);
 
@@ -40,8 +44,30 @@ public class RecordsActivity extends AppCompatActivity {
     private void showAllRecords() {
         new RecordManager().getUserRecordsFromDb(new MyCallback<ArrayList<Record>>() {
             @Override
-            public void onCallback(ArrayList<Record> records) {
+            public void onCallback(final ArrayList<Record> records) {
                 records_list.setAdapter(new RecordsAdapter(records));
+
+
+                ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                        0, ItemTouchHelper.LEFT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView,
+                                          RecyclerView.ViewHolder viewHolder,
+                                          RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        // Remove item from backing list here
+                        int position = viewHolder.getAdapterPosition();
+
+                        new RecordManager().removeRecordFromDb(records.get(position).getRecordId());
+                        new RecordsAdapter(records).notifyDataSetChanged();
+                    }
+                });
+
+                itemTouchHelper.attachToRecyclerView(records_list);
             }
         });
     }

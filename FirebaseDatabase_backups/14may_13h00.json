@@ -1,0 +1,19 @@
+{
+  "-LCRD8VmRoT5li2FuSPY" : {
+    "examineDateTime" : {
+      "date" : 14,
+      "day" : 1,
+      "hours" : 3,
+      "minutes" : 16,
+      "month" : 4,
+      "seconds" : 46,
+      "time" : 1526260606052,
+      "timezoneOffset" : -120,
+      "year" : 118
+    },
+    "habitId" : "-LC9ytpajxQIBsna4E-p",
+    "recordId" : "-LCRD8VmRoT5li2FuSPY",
+    "result" : "2 liter",
+    "userId" : "h0w2C7aT34eaFym2BmCL4wgAilA2"
+  }
+}
