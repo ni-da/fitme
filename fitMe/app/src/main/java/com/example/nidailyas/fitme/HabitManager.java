@@ -1,5 +1,7 @@
 package com.example.nidailyas.fitme;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 public class HabitManager {
 
     DatabaseReference databaseReferenceHabit = FirebaseDatabase.getInstance().getReference("habits");
+
     public void getHabitNamesFromDb(final MyCallback<ArrayList<String>> myCallback) {
         final ArrayList<String> habitNames = new ArrayList<>();
         databaseReferenceHabit.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -23,6 +26,7 @@ public class HabitManager {
                 habitNames.add("Add new habit");
                 myCallback.onCallback(habitNames);
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -74,6 +78,43 @@ public class HabitManager {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    public void getUserHabits(final MyCallback<ArrayList<Habit>> myCallback) {
+        final ArrayList<Habit> habits = new ArrayList<>();
+        new UserManager().getUserFromDb(new MyCallback<User>() {
+            @Override
+            public void onCallback(User user) {
+                new PlanningManager().getPlanningByIdFromDb(new MyCallback<Planning>() {
+                    @Override
+                    public void onCallback(Planning planning) {
+                        ArrayList<String> freqs = planning.getHabitFrequencies();
+                        for (String freq : freqs) {
+                            new HabitFrequencyTimingManager().getHabitFrequencyTimingByIdFromDb(new MyCallback<HabitFrequencyTiming>() {
+                                @Override
+                                public void onCallback(HabitFrequencyTiming habitFrequencyTiming) {
+                                    getHabitByIdFromDb(new MyCallback<Habit>() {
+                                        @Override
+                                        public void onCallback(Habit habit) {
+                                            habits.add(habit);
+                                            Log.w("Habitssss: ", habit.getHabitName());
+                                            myCallback.onCallback(habits);
+
+                                        }
+
+                                    }, habitFrequencyTiming.getHabitId());
+//                                    Log.w("Habitzzz: ",Integer.toString(habits.size()));
+
+                                }
+                            }, freq);
+                        }
+
+                    }
+                }, user.getPlanningId());
+            }
+
+        });
+
     }
 
 

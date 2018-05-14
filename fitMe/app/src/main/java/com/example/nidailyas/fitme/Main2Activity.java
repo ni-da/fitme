@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +42,6 @@ public class Main2Activity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         tasksList.setLayoutManager(layoutManager);
         tasksList.addOnItemTouchListener(new RecyclerItemClickListener(Main2Activity.this, new RecyclerItemClickListener.OnItemClickListener() {
-
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getApplicationContext(), ExecuteHabitActivity.class);
@@ -114,8 +112,18 @@ public class Main2Activity extends AppCompatActivity {
 
 
     private void showHabits(final RecyclerView tasksList) {
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Toast.makeText(Main2Activity.this, "Userid: " + userId, Toast.LENGTH_SHORT).show();
+//        new HabitManager().getUserHabits(new MyCallback<ArrayList<Habit>>() {
+//            @Override
+//            public void onCallback(ArrayList<Habit> habits) {
+//                tasksList.setAdapter(new taskAdapter(habits));
+//                for (Habit habit : habits) {
+//                    habitIds.add(habit.getHabitId());
+//                }
+//            }
+//        });
+
+        String userId = new UserManager().getCurrentUserIdFromDb();
+        // Toast.makeText(Main2Activity.this, "Userid: " + userId, Toast.LENGTH_SHORT).show();
         mDatabase.child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -123,14 +131,11 @@ public class Main2Activity extends AppCompatActivity {
                         if (dataSnapshot.exists()) {
                             User user = dataSnapshot.getValue(User.class);
                             String planningId = user.planningId;
-                            //Toast.makeText(Main2Activity.this, "Thissss: " +  user.planningId, Toast.LENGTH_SHORT).show();
                             mDatabase.child("plannings").child(planningId).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     Planning planning = dataSnapshot.getValue(Planning.class);
-                                    //Toast.makeText(Main2Activity.this, "Thissss: " +  planning.getHabitFrequencies(), Toast.LENGTH_SHORT).show();
                                     final ArrayList<String> habitsFreqIds = planning.getHabitFrequencies();
-                                    //tasksList.setAdapter(new taskAdapter(habitsFreqIds));
                                     for (String object : habitsFreqIds) {
                                         mDatabase.child("habitFrequencyTimings").child(object).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
@@ -141,8 +146,6 @@ public class Main2Activity extends AppCompatActivity {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         Habit habit = dataSnapshot.getValue(Habit.class);
-                                                        //items.add(new Pair(habit.getHabitName(), habit.getDescription()));
-                                                        //habitsFreqIds.add(habit.getHabitId());
                                                         habitIds.add(habit.getHabitId());
                                                         habits.add(habit);
                                                         tasksList.setAdapter(new taskAdapter(habits));

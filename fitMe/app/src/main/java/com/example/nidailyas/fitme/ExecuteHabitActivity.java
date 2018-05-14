@@ -14,7 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
 
-public class ExecuteHabitActivity extends Main2Activity implements SensorEventListener {
+public class ExecuteHabitActivity extends Main2Activity
+        implements SensorEventListener {
     TextView circle_level;
     TextView textView_signatureName;
     TextView textView_gold_coins;

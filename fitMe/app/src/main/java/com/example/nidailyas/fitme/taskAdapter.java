@@ -1,7 +1,6 @@
 package com.example.nidailyas.fitme;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +35,30 @@ public class taskAdapter extends
     @Override
     public void onBindViewHolder(final tasksViewHolder holder, int position) {
         Habit habit = data.get(position);
-        Log.w("Position: ", habit.getHabitName());
-//        holder.txtTitle.setText(data.get(position).getKey());
-//        holder.txtDesc.setText(data.get(position).getValue());
+
         new HabitManager().getHabitByIdFromDb(new MyCallback<Habit>() {
                                                   @Override
                                                   public void onCallback(Habit element) {
                                                       holder.txtTitle.setText(element.getHabitName());
                                                       holder.txtDesc.setText(element.getDescription());
+                                                      switch (element.getHabitName()) {
+                                                          case "Run":
+                                                              holder.imgIcon.setImageResource(R.drawable.ic_directions_run_white_50dp);
+                                                              break;
+                                                          case "Walk":
+                                                              holder.imgIcon.setImageResource(R.drawable.ic_directions_walk_white_50dp);
+                                                              break;
+                                                          case "Weight":
+                                                              holder.imgIcon.setImageResource(R.drawable.ic_scale);
+                                                              break;
+                                                          case "Bp":
+                                                              holder.imgIcon.setImageResource(R.drawable.ic_bp);
+                                                              break;
+                                                          case "Drink water":
+                                                              holder.imgIcon.setImageResource(R.drawable.ic_water_drop);
+                                                              break;
+
+                                                      }
                                                   }
                                               }
                 , habit.habitId);
