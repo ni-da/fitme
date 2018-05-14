@@ -44,7 +44,7 @@ public class RecordsAdapter extends
         }, record.getHabitId());
 
 
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
         DateFormat timeFormat = new SimpleDateFormat("HH:mm");
         Date date = record.getExamineDateTime();
         holder.textView_record_date.setText(dateFormat.format(date.getTime()));

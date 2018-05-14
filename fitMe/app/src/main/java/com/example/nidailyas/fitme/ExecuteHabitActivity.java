@@ -99,7 +99,6 @@ public class ExecuteHabitActivity extends Main2Activity
         //        findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
         findViewById(R.id.animation_view_star).setVisibility(View.VISIBLE);
         Date today = new Date();
-
         // check which type
         switch (habitId) {
             case "habitId2": //run
