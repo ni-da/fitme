@@ -242,7 +242,8 @@ public class MainActivity extends AppCompatActivity {
                                     radioGroup_gender.check(R.id.radio_female);
                                 }
 
-                                if (user.getProfileImageUrl() != null) {
+                                if (user.getProfileImageUrl() != null &&
+                                        !MainActivity.this.isFinishing()) {
                                     Glide.with(MainActivity.this)
                                             .load(user.getProfileImageUrl()).
                                             into(imageView_profile);

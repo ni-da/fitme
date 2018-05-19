@@ -114,7 +114,6 @@ public class HabitManager {
 
     public void getHabitTimesByHabitId(final MyCallback<HabitFrequencyTiming> myCallback,
                                        final String habitId) {
-        final ArrayList<String> times = new ArrayList<>();
         new UserManager().getUserFromDb(new MyCallback<User>() {
             @Override
             public void onCallback(User user) {
@@ -128,7 +127,6 @@ public class HabitManager {
                                 @Override
                                 public void onCallback(HabitFrequencyTiming habitFrequencyTiming) {
                                     if (habitFrequencyTiming.getHabitId().equals(habitId)){
-                                        //Log.w("idke: ", habitFrequencyTiming.times.get(0));
                                         myCallback.onCallback(habitFrequencyTiming);
                                     }
 
@@ -140,6 +138,19 @@ public class HabitManager {
             }
         });
     }
+
+    public int gethabitPriorityByHabitId(String habitId){
+        final int[] priority = {0};
+        getHabitTimesByHabitId(new MyCallback<HabitFrequencyTiming>() {
+            @Override
+            public void onCallback(HabitFrequencyTiming habitFrequencyTiming) {
+                priority[0] = habitFrequencyTiming.getHabitPriority();
+            }
+        },habitId);
+
+        return priority[0];
+    }
+
 
 
 }

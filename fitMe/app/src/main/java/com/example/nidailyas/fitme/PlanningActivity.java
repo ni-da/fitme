@@ -174,7 +174,8 @@ public class PlanningActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //toDO: fix notifications
-                new HabitNotification().registerNotification1(notifyHabitId, notifyHour, notifyMin, getApplicationContext());
+                new HabitNotification().registerNotification1(notifyHabitId, notifyHour, notifyMin,
+                        getApplicationContext());
             }
         });
 

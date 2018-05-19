@@ -85,18 +85,6 @@ public class ExecuteHabitActivity extends Main2Activity
 //todo:   show textview; what will the user earn by doing this habit!
                 // a textviw is added.
 
-                //ImageView imageView_smiely = findViewById(R.id.imageView_smiely);
-                //imageView_smiely.setVisibility(View.VISIBLE);
-//                TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.activity_execute_habit));
-//
-//                // position: LinearLayout
-//                LinearLayout.LayoutParams pos = new LinearLayout.LayoutParams(
-//                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
-//                );
-//                pos.gravity = Gravity.TOP;
-//                //pos.gravity = Gravity.LEFT;
-//                imageView_smiely.setLayoutParams(pos);
-
             }
         });
 
@@ -105,15 +93,13 @@ public class ExecuteHabitActivity extends Main2Activity
     public void executeHabit() {
         button_startHabit.setEnabled(false);
         String result = null;
-        //        findViewById(R.id.textView_addingScor50).setVisibility(View.VISIBLE);
+        String resultValue = null;
         findViewById(R.id.animation_view_star).setVisibility(View.VISIBLE);
         Date today = new Date();
-        // check which type
         switch (habitId) {
             case "habitId2": //run
                 result = editText_executeHabit_run_min.getText().toString() +
                         " min;" + editText_executeHabit_run_km.getText().toString() + " km";
-
                 break;
             case "habitId1": // walk
                 result = editText_executeHabit_run_min.getText().toString() + " min;"
@@ -122,24 +108,29 @@ public class ExecuteHabitActivity extends Main2Activity
                 break;
             case "-LC9ugzpF6S_Gvx5VL_M": //weight
                 result = editText_executeHabit_weight.getText().toString() + " kg";
+                resultValue = editText_executeHabit_weight.getText().toString();
                 break;
             case "habitId3": //bp
                 result = editText_executeHabit_bp_U.getText().toString() + ";" +
                         editText_executeHabit_bp_L.getText().toString();
+                resultValue = result;
                 break;
             case "-LC9ytpajxQIBsna4E-p": // drink
                 result = editText_executeHabit_water.getText().toString() + " liter";
                 break;
             default:
         }
-        new UserManager().updateUserScore((long) 50);
+        final String finalResultValue = resultValue;
+
+        new UserManager().updateUserScore(finalResultValue, habitId,
+                new HabitManager().gethabitPriorityByHabitId(habitId));
+
         Record record = new Record(null, result, today,
                 new UserManager().getCurrentUserIdFromDb(), habitId);
         new RecordManager().addRecordTodb(record);
     }
 
     public void showHabitInfo(final String habitId) {
-
         new HabitManager().getHabitByIdFromDb(new MyCallback<Habit>() {
             @Override
             public void onCallback(Habit habit) {

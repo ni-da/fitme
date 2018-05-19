@@ -34,7 +34,8 @@ public class PlanningManager {
     }
 
     public void getPlanningByIdFromDb(final MyCallback<Planning> myCallback, String planningId) {
-        databaseReferencePlannings.child(planningId).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReferencePlannings.child(planningId).addListenerForSingleValueEvent
+                (new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {

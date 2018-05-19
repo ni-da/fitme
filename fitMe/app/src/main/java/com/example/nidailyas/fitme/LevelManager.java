@@ -27,11 +27,11 @@ public class LevelManager {
         });
     }
 
-    public void raiseUserLevel(final Long score, final String levelId) {
+    public void raiseUserLevel(final Long userScore, final int scoreToAdd, final String levelId) {
         getLevelFromDb(new MyCallback<Level>() {
             @Override
             public void onCallback(Level level) {
-                if (score + 50 >= level.getMaxScore()) {
+                if (userScore + scoreToAdd >= level.getMaxScore()) {
                     //verhoogLevel
                     int lvl = (Integer.parseInt(levelId)) + 1;
                     new UserManager().updateUserLevel(Integer.toString(lvl));

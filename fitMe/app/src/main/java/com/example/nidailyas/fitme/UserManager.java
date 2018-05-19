@@ -1,5 +1,7 @@
 package com.example.nidailyas.fitme;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,23 +31,65 @@ public class UserManager {
                 });
     }
 
-    public void updateUserScore(final Long score) {
-    //todo: add bonus scoring!
-//        if (habitType == "Weight") {
-//            if (result + 3 < idealWeight) {
-//                score = -50;
-//            } else {
-//                score = 50;
-//            }
-//        }
+    public void updateUserScore(final String result, String habitId, int priority) {
+        //todo: add bonus scoring!
+        final int routineScore = 20;
+        final int priorityBonus = 10;
+        final int idealValueBonus = 40;
+        final int[] totalScore = {20};
+
+        Log.w("ResultValue: ", result);
+
+        // - ideal value
+        switch (habitId) {
+            case "-LC9ugzpF6S_Gvx5VL_M": //weight
+                final double weightResult = Double.valueOf(result);
+                getUserFromDb(new MyCallback<User>() {
+                    @Override
+                    public void onCallback(User user) {
+                        // toDo: calculate BMI
+                        if (weightResult == user.getWeight()+2 ||
+                                weightResult  == user.getWeight()-2 ||
+                                weightResult == user.getWeight()) {
+                            Log.w("Ideal weight!", Integer.toString(totalScore[0]));
+                            totalScore[0] += idealValueBonus;
+                            Log.w("Ideal score!", Integer.toString(totalScore[0]));
+                        }
+                    }
+                });
+                break;
+            case "habitId3": //bp
+                String bpResult[]= result.split(";");
+                String bp1 = bpResult[0];
+                String bp2 = bpResult[1];
+
+                final double upperBpResult = Double.valueOf(bp1),
+                        lowerBpResult = Double.valueOf(bp2);
+                getUserFromDb(new MyCallback<User>() {
+                    @Override
+                    public void onCallback(User user) {
+                        if ((upperBpResult == user.getBegin_bp_upper()) &&
+                                (lowerBpResult == user.getBegin_bp_lower())) {
+                            totalScore[0] += idealValueBonus;
+                            Log.w("Ideal score!", Integer.toString(totalScore[0]));
+                        }
+                    }
+                });
+                break;
+        }
+        // - priority
+        totalScore[0] = (0-priorityBonus) * priority + 60;
+
+
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReferenceUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                Long newScore = user.getScore() + score;
+                Long newScore = user.getScore() + totalScore[0];
+
                 databaseReferenceUser.child(user.getUserId()).child("score").setValue(newScore);
-                new LevelManager().raiseUserLevel(user.getScore(), user.getLevelId());
+                new LevelManager().raiseUserLevel(user.getScore(), totalScore[0], user.getLevelId());
             }
 
             @Override
@@ -76,7 +120,7 @@ public class UserManager {
     public void addHabitToUserPlanning(ArrayList<String> times, String habitId, int habit_Priority) {
         HabitFrequencyTiming habitFrequencyTiming = new HabitFrequencyTiming
                 (null,
-                times, habitId, habit_Priority);
+                        times, habitId, habit_Priority);
         String habitFrequencyTimingId = new HabitFrequencyTimingManager()
                 .addHabitFrequencyTimingToDb(habitFrequencyTiming);
         new PlanningManager().updatePlanning(habitFrequencyTimingId);
