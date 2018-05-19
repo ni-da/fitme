@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,7 +9,13 @@
         android:id="@+id/add_habit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
+
+        <Spinner
+            android:id="@+id/spinner_habits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -63,6 +70,10 @@
         <!--tools:layout_editor_absoluteX="157dp"-->
         <!--tools:layout_editor_absoluteY="140dp" />-->
 
+        <include
+            android:id="@+id/days_checkboxes"
+            layout="@layout/days_checkboxes" />
+
         <TextView
             android:id="@+id/textView_time"
             android:layout_width="wrap_content"
@@ -71,11 +82,11 @@
             android:layout_weight="1"
             android:text="Pick a time!" />
 
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
 
             <TimePicker
                 android:id="@+id/timePicker1"

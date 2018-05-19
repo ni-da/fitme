@@ -19,9 +19,23 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\NidaI\Documents\GitHub\fitme\icons8-water-96.png" />
-                                      <entry key="outputName" value="ic_water_drop" />
+                                      <entry key="imageAsset" value="C:\Users\NidaI\Documents\GitHub\fitme\icons8-yoga-96.png" />
+                                      <entry key="outputName" value="ic_yoga" />
                                       <entry key="theme" value="HOLO_DARK" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="launcher">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundLayerName" value="ic_launcher_background" />
+                                      <entry key="foregroundImage" value="C:\Users\NidaI\Documents\GitHub\fitme\icons8-yoga-96.png" />
+                                      <entry key="foregroundLayerName" value="ic_launcher_foreground" />
+                                      <entry key="outputName" value="ic_yoga" />
                                     </map>
                                   </option>
                                 </PersistentState>
