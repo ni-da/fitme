@@ -31,7 +31,7 @@ public class LevelManager {
         getLevelFromDb(new MyCallback<Level>() {
             @Override
             public void onCallback(Level level) {
-                if (score + 50 == level.getMaxScore()) {
+                if (score + 50 >= level.getMaxScore()) {
                     //verhoogLevel
                     int lvl = (Integer.parseInt(levelId)) + 1;
                     new UserManager().updateUserLevel(Integer.toString(lvl));
@@ -80,7 +80,7 @@ public class LevelManager {
                 if (dataSnapshot.exists()) {
                     Level level = dataSnapshot.getValue(Level.class);
                     long scoreToGO = level.getMaxScore() - score;
-                    long scoreEarned = score - (level.getMaxScore() - level.getMinScore());
+                    long scoreEarned = score -  level.getMinScore();
                     myCallback.onCallback(Long.toString(scoreEarned) + "/" + Long.toString((level.getMaxScore() - level.getMinScore())));
                 }
             }
