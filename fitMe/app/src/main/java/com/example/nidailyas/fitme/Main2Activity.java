@@ -12,13 +12,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
-    private LinearLayoutManager layoutManager;
-    private ArrayList<String> habitIdss = new ArrayList<>();
-    private ViewGroup activity_main2;
+    private final ArrayList<String> habitIdss = new ArrayList<>();
     private TextView circle_level;
     private TextView textView_signatureName;
     private TextView textView_gold_coins_count;
-    private RecyclerView tasksList;
     private TextView textView_gold_coins;
 
 
@@ -26,9 +23,9 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        activity_main2 = findViewById(R.id.activity_main2);
-        tasksList = (RecyclerView) findViewById(R.id.tasks_list);
-        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+        ViewGroup activity_main2 = findViewById(R.id.activity_main2);
+        RecyclerView tasksList = findViewById(R.id.tasks_list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false);
         tasksList.setLayoutManager(layoutManager);
 
@@ -71,7 +68,6 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), RecordsActivity.class));
-                //startActivity(new Intent(getApplicationContext(), WeightActivity.class));
             }
         });
         updateHeader();
