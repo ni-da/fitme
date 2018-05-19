@@ -13,9 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,17 +32,44 @@ public class PlanningActivity extends AppCompatActivity {
     private Boolean customHabit;
     private String selectedHabitId;
     private String notifyHabitId;
+    private TextView textView_priority;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning);
         final Spinner spinner_habits = findViewById(R.id.spinner_habits);
+
+        ////////////////////// The seekbar for setting the priority ////////////////////////////////
+        final SeekBar seekBar_priority = findViewById(R.id.seekBar_priority);
+        final int[] seekbar_progress = {seekBar_priority.getProgress()+1};
+        textView_priority = findViewById(R.id.textView_priority);
+        textView_priority.setText("Priority: " + seekbar_progress[0]);
+        seekBar_priority.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                // updated continuously as the user slides the thumb
+                i++;
+                textView_priority.setText("Progress: " + i);
+                seekbar_progress[0] = i;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(getApplicationContext(), "Priority set to: " + seekbar_progress[0],
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
         RecyclerView tasksList = findViewById(R.id.tasks_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
                 false);
         tasksList.setLayoutManager(layoutManager);
-
         tasksList.addOnItemTouchListener(new RecyclerItemClickListener
                 (PlanningActivity.this,
                         new RecyclerItemClickListener.OnItemClickListener() {

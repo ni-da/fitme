@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/add_habit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <Spinner
             android:id="@+id/spinner_habits"
@@ -50,26 +51,24 @@
             android:layout_height="wrap_content"
             android:hint="habit detail" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <!--<TextView-->
-        <!--android:id="@+id/textView_frequency"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_weight="1"-->
-        <!--android:text="How many times per day do you want to do this habit?" />-->
+        <TextView
+            android:id="@+id/textView_priority"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-        <!--<EditText-->
-        <!--android:id="@+id/editText_habitFrequency"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:ems="10"-->
-        <!--android:hint="0"-->
-        <!--android:inputType="number"-->
-        <!--tools:layout_editor_absoluteX="157dp"-->
-        <!--tools:layout_editor_absoluteY="140dp" />-->
-
+        <SeekBar
+            android:id="@+id/seekBar_priority"
+            android:max="4"
+            android:progress="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
         <include
             android:id="@+id/days_checkboxes"
             layout="@layout/days_checkboxes" />
@@ -101,8 +100,6 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="Add time" />
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -125,5 +122,5 @@
             android:layout_gravity="center"
             android:text="Send notification" />
     </LinearLayout>
-
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

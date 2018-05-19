@@ -53,24 +53,12 @@
             android:id="@+id/tasks_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-        <!--<LinearLayout-->
-        <!--android:id="@+id/linLayout_addNewHabit"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/lightGray"-->
-        <!--android:orientation="vertical">-->
-
-
-        <!--<include-->
-        <!--android:id="@+id/addhabit_content_planning"-->
-        <!--layout="@layout/addhabit_content_planning" />-->
-
-
-        <!--</LinearLayout>-->
     </LinearLayout>
+
 
     <include
         android:id="@+id/add_habit_content"
         layout="@layout/addhabit_content_planning"
         android:visibility="gone" />
+
 </android.support.constraint.ConstraintLayout>
