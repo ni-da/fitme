@@ -37,7 +37,7 @@ public class PlanningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_planning);
         final Spinner spinner_habits = findViewById(R.id.spinner_habits);
         RecyclerView tasksList = findViewById(R.id.tasks_list);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
                 false);
         tasksList.setLayoutManager(layoutManager);
 
@@ -187,7 +187,7 @@ public class PlanningActivity extends AppCompatActivity {
         new HabitManager().getUserHabits(new MyCallback<ArrayList<Habit>>() {
             @Override
             public void onCallback(ArrayList<Habit> habits) {
-                tasksList.setAdapter(new taskAdapter(habits));
+                tasksList.setAdapter(new habitAdapter(habits));
                 for (Habit habit : habits) {
                     if (!habitIdss.contains(habit.getHabitId())) {
                         habitIdss.add(habit.getHabitId());
