@@ -10,7 +10,6 @@
     <uses-feature
         android:name="@string/step_detector"
         android:required="false" />
-
     <uses-feature
         android:name="@string/step_counter"
         android:required="false" />
@@ -53,7 +52,8 @@
         <receiver android:name=".Notification_reciever" />
 
         <activity android:name=".SavingDummyData" />
-        <activity android:name=".RecordsActivity"></activity>
+        <activity android:name=".RecordsActivity" />
+        <activity android:name=".HabitsOverviewActivity"></activity>
     </application>
 
 </manifest>
