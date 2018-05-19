@@ -34,6 +34,7 @@ public class HabitManager {
         });
     }
 
+
     public String addNewHabitToDb(Habit habit) {
         String habitId = databaseReferenceHabit.push().getKey();
         habit.habitId = habitId;
@@ -112,9 +113,35 @@ public class HabitManager {
                     }
                 }, user.getPlanningId());
             }
-
         });
+    }
 
+    public void getHabitTimesByHabitId(final MyCallback<ArrayList<String>> myCallback, final String habitId) {
+        final ArrayList<String> times = new ArrayList<>();
+        new UserManager().getUserFromDb(new MyCallback<User>() {
+            @Override
+            public void onCallback(User user) {
+                new PlanningManager().getPlanningByIdFromDb(new MyCallback<Planning>() {
+                    @Override
+                    public void onCallback(Planning planning) {
+                        ArrayList<String> freqs = planning.getHabitFrequencies();
+                        for (String freq : freqs) {
+                            new HabitFrequencyTimingManager().getHabitFrequencyTimingByIdFromDb
+                                    (new MyCallback<HabitFrequencyTiming>() {
+                                @Override
+                                public void onCallback(HabitFrequencyTiming habitFrequencyTiming) {
+                                    if (habitFrequencyTiming.getHabitId().equals(habitId)){
+                                        Log.w("idke: ", habitFrequencyTiming.times.get(0));
+                                        myCallback.onCallback(habitFrequencyTiming.times);
+                                    }
+
+                                }
+                            }, freq);
+                        }
+                    }
+                }, user.getPlanningId());
+            }
+        });
     }
 
 

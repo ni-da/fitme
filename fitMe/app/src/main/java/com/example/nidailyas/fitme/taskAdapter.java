@@ -38,10 +38,18 @@ public class taskAdapter extends
 
         new HabitManager().getHabitByIdFromDb(new MyCallback<Habit>() {
                                                   @Override
-                                                  public void onCallback(Habit element) {
-                                                      holder.txtTitle.setText(element.getHabitName());
-                                                      holder.txtDesc.setText(element.getDescription());
-                                                      switch (element.getHabitName()) {
+                                                  public void onCallback(Habit habit1) {
+                                                      holder.txtTitle.setText(habit1.getHabitName());
+                                                      holder.txtDesc.setText(habit1.getDescription());
+                                                      new HabitManager().getHabitTimesByHabitId(new MyCallback<ArrayList<String>>() {
+                                                          @Override
+                                                          public void onCallback(ArrayList<String> element) {
+                                                              for (String i : element) {
+                                                                  holder.txtTimes.append(i + " \n");
+                                                              }
+                                                          }
+                                                      }, habit1.getHabitId());
+                                                      switch (habit1.getHabitName()) {
                                                           case "Run":
                                                               holder.imgIcon.setImageResource(R.drawable.ic_directions_run_white_50dp);
                                                               break;
@@ -56,6 +64,9 @@ public class taskAdapter extends
                                                               break;
                                                           case "Drink water":
                                                               holder.imgIcon.setImageResource(R.drawable.ic_water_drop);
+                                                              break;
+                                                          case "yoga":
+                                                              holder.imgIcon.setImageResource(R.drawable.ic_yoga);
                                                               break;
 
                                                       }
@@ -74,12 +85,14 @@ public class taskAdapter extends
         ImageView imgIcon;
         TextView txtTitle;
         TextView txtDesc;
+        TextView txtTimes;
 
         public tasksViewHolder(View itemViem) {
             super(itemViem);
             imgIcon = itemViem.findViewById(R.id.imagIcon);
             txtTitle = itemViem.findViewById(R.id.txtTitle);
             txtDesc = itemViem.findViewById(R.id.txtDesc);
+            txtTimes = itemViem.findViewById(R.id.txtTimes);
         }
 
     }

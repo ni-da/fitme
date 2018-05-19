@@ -53,8 +53,16 @@
         <!--space-->
         <View
             android:layout_width="20dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight="0" />
+        <TextView
+            android:id="@+id/txtUpNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Up Next ..."
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/tasks_list"
