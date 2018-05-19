@@ -33,6 +33,7 @@ public class PlanningActivity extends AppCompatActivity {
     private String selectedHabitId;
     private String notifyHabitId;
     private TextView textView_priority;
+    private int habit_Priority;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +64,11 @@ public class PlanningActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Toast.makeText(getApplicationContext(), "Priority set to: " + seekbar_progress[0],
                         Toast.LENGTH_SHORT).show();
+                habit_Priority = seekbar_progress[0];
             }
         });
+        ////////////////////// The seekbar for setting the priority ////////////////////////////////
+
 
         RecyclerView tasksList = findViewById(R.id.tasks_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
@@ -153,11 +157,11 @@ public class PlanningActivity extends AppCompatActivity {
                         String newAddedHabitId = addNewHabitToDb
                                 (editText_habitName.getText().toString(),
                                         editText_habitDetail.getText().toString());
-                        addHabitToUserProfile(times, newAddedHabitId);
+                        addHabitToUserProfile(times, newAddedHabitId, habit_Priority);
                         //notifyHabitId = newAddedHabitId;
                     }
                 } else {
-                    addHabitToUserProfile(times, selectedHabitId);
+                    addHabitToUserProfile(times, selectedHabitId, habit_Priority);
                     //notifyHabitId = selectedHabitId;
                 }
                 //new HabitNotification().registerNotification(notifyHabitId, times, notifyHour, notifyMin, getApplicationContext());
@@ -194,8 +198,8 @@ public class PlanningActivity extends AppCompatActivity {
     }
 
 
-    private void addHabitToUserProfile(ArrayList<String> times, String habitId) {
-        new UserManager().addHabitToUserPlanning(times, habitId);
+    private void addHabitToUserProfile(ArrayList<String> times, String habitId, int habit_Priority) {
+        new UserManager().addHabitToUserPlanning(times, habitId, habit_Priority);
     }
 
     private Boolean checkEditTextValidation(EditText editText) {
