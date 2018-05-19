@@ -78,12 +78,11 @@ public class ExecuteHabitActivity extends Main2Activity
 
 
         button_startHabit = findViewById(R.id.button_startHabit);
-
         button_startHabit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 executeHabit();
-
+//todo:   show textview; what will the user earn by doing this habit!
                 //ImageView imageView_smiely = findViewById(R.id.imageView_smiely);
                 //imageView_smiely.setVisibility(View.VISIBLE);
 //                TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.activity_execute_habit));

@@ -169,6 +169,7 @@ public class PlanningActivity extends AppCompatActivity {
         findViewById(R.id.button_notify).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //toDO: fix notifications
                 new HabitNotification().registerNotification1(notifyHabitId, notifyHour, notifyMin, getApplicationContext());
             }
         });

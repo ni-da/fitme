@@ -3,6 +3,10 @@ package com.example.nidailyas.fitme;
 import java.util.ArrayList;
 
 public class HabitFrequencyTiming {
+    //toDO: add priority
+
+    //toDo: add days
+
     String habitFrequencyTimingId; //PK
     ArrayList<String> times = new ArrayList<String>();
     String habitId; //FK

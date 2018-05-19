@@ -30,7 +30,7 @@ public class UserManager {
     }
 
     public void updateUserScore(final Long score) {
-
+    //todo: add bonus scoring!
 //        if (habitType == "Weight") {
 //            if (result + 3 < idealWeight) {
 //                score = -50;
