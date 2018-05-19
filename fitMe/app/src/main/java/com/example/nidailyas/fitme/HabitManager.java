@@ -91,7 +91,8 @@ public class HabitManager {
                     public void onCallback(Planning planning) {
                         ArrayList<String> freqs = planning.getHabitFrequencies();
                         for (String freq : freqs) {
-                            new HabitFrequencyTimingManager().getHabitFrequencyTimingByIdFromDb(new MyCallback<HabitFrequencyTiming>() {
+                            new HabitFrequencyTimingManager().getHabitFrequencyTimingByIdFromDb
+                                    (new MyCallback<HabitFrequencyTiming>() {
                                 @Override
                                 public void onCallback(HabitFrequencyTiming habitFrequencyTiming) {
                                     getHabitByIdFromDb(new MyCallback<Habit>() {
@@ -100,23 +101,19 @@ public class HabitManager {
                                             habits.add(habit);
                                             Log.w("Habitssss: ", habit.getHabitName());
                                             myCallback.onCallback(habits);
-
                                         }
-
                                     }, habitFrequencyTiming.getHabitId());
-//                                    Log.w("Habitzzz: ",Integer.toString(habits.size()));
-
                                 }
                             }, freq);
                         }
-
                     }
                 }, user.getPlanningId());
             }
         });
     }
 
-    public void getHabitTimesByHabitId(final MyCallback<ArrayList<String>> myCallback, final String habitId) {
+    public void getHabitTimesByHabitId(final MyCallback<HabitFrequencyTiming> myCallback,
+                                       final String habitId) {
         final ArrayList<String> times = new ArrayList<>();
         new UserManager().getUserFromDb(new MyCallback<User>() {
             @Override
@@ -131,8 +128,8 @@ public class HabitManager {
                                 @Override
                                 public void onCallback(HabitFrequencyTiming habitFrequencyTiming) {
                                     if (habitFrequencyTiming.getHabitId().equals(habitId)){
-                                        Log.w("idke: ", habitFrequencyTiming.times.get(0));
-                                        myCallback.onCallback(habitFrequencyTiming.times);
+                                        //Log.w("idke: ", habitFrequencyTiming.times.get(0));
+                                        myCallback.onCallback(habitFrequencyTiming);
                                     }
 
                                 }

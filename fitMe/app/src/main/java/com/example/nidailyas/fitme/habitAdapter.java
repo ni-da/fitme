@@ -31,17 +31,19 @@ public class habitAdapter extends
 
     @Override
     public void onBindViewHolder(final HabitViewHolder holder, int position) {
-        Habit habit = data.get(position);
+        final Habit habit = data.get(position);
 
         new HabitManager().getHabitByIdFromDb(new MyCallback<Habit>() {
                                                   @Override
                                                   public void onCallback(Habit habit1) {
                                                       holder.txtTitle.setText(habit1.getHabitName());
                                                       holder.txtDesc.setText(habit1.getDescription());
-                                                      new HabitManager().getHabitTimesByHabitId(new MyCallback<ArrayList<String>>() {
+                                                      new HabitManager().getHabitTimesByHabitId(new MyCallback<HabitFrequencyTiming>() {
                                                           @Override
-                                                          public void onCallback(ArrayList<String> element) {
-                                                              for (String i : element) {
+                                                          public void onCallback(HabitFrequencyTiming habitFrequencyTiming) {
+                                                              holder.txtTitle.append(" - " +
+                                                                      habitFrequencyTiming.getHabitPriority());
+                                                              for (String i : habitFrequencyTiming.getTimes()) {
                                                                   holder.txtTimes.append(i + " \n");
                                                               }
                                                           }

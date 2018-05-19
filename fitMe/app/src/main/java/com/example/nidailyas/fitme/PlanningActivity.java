@@ -222,7 +222,6 @@ public class PlanningActivity extends AppCompatActivity {
                     if (!habitIdss.contains(habit.getHabitId())) {
                         habitIdss.add(habit.getHabitId());
                     }
-
                 }
             }
         });

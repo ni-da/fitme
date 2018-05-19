@@ -94,7 +94,7 @@ public class SavingDummyData extends AppCompatActivity {
         String habitFrequencyTimingId = databaseReference_HabitFrequencyTimings.push().getKey();
         HabitFrequencyTiming habitFrequencyTiming = new HabitFrequencyTiming(habitFrequencyTimingId,
                 times,
-                "-LB1kYrTXal7bwMkw8or");
+                "-LB1kYrTXal7bwMkw8or", 1);
         databaseReference_HabitFrequencyTimings.child(habitFrequencyTimingId).setValue(habitFrequencyTiming);
         toast();
     }

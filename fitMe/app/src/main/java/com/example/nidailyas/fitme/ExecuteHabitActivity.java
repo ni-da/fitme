@@ -83,6 +83,8 @@ public class ExecuteHabitActivity extends Main2Activity
             public void onClick(View view) {
                 executeHabit();
 //todo:   show textview; what will the user earn by doing this habit!
+                // a textviw is added.
+
                 //ImageView imageView_smiely = findViewById(R.id.imageView_smiely);
                 //imageView_smiely.setVisibility(View.VISIBLE);
 //                TransitionManager.beginDelayedTransition((ViewGroup) findViewById(R.id.activity_execute_habit));

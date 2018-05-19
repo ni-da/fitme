@@ -75,7 +75,7 @@ public class UserManager {
 
     public void addHabitToUserPlanning(ArrayList<String> times, String habitId) {
         HabitFrequencyTiming habitFrequencyTiming = new HabitFrequencyTiming(null,
-                times, habitId);
+                times, habitId, 1);
         String habitFrequencyTimingId = new HabitFrequencyTimingManager()
                 .addHabitFrequencyTimingToDb(habitFrequencyTiming);
         new PlanningManager().updatePlanning(habitFrequencyTimingId);

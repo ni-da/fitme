@@ -38,12 +38,20 @@
                 android:text="Hello there"
                 android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/imageView_smiely"
+            <TextView
+                android:id="@+id/textView_pointsToEarn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_sentiment_satisfied_black_24dp"
-                android:visibility="invisible" />
+                android:layout_weight="1"
+                android:text="Earn 80 points!"
+                android:textSize="18sp" />
+
+            <!--<ImageView-->
+                <!--android:id="@+id/imageView_smiely"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/ic_sentiment_satisfied_black_24dp"-->
+                <!--android:visibility="gone" />-->
 
             <EditText
                 android:layout_width="wrap_content"
@@ -51,7 +59,7 @@
                 android:hint="Weight"
                 android:inputType="numberDecimal"
                 android:id="@+id/editText_executeHabit_weight"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
             <EditText
                 android:layout_width="wrap_content"
@@ -59,27 +67,27 @@
                 android:hint="Water in liters"
                 android:inputType="numberDecimal"
                 android:id="@+id/editText_executeHabit_water"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Duration in min"
                 android:inputType="numberDecimal"
                 android:id="@+id/editText_executeHabit_run_min"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Distence in km's"
                 android:inputType="numberDecimal"
                 android:id="@+id/editText_executeHabit_run_km"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
             <LinearLayout
                 android:id="@+id/linLayout_executeHabit_bp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="invisible">
+                android:visibility="gone">
                 <TextView
                     android:id="@+id/textView_bp"
                     android:layout_width="wrap_content"
@@ -124,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
 
         </LinearLayout>

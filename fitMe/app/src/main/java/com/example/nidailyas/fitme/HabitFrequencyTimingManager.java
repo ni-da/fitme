@@ -22,12 +22,15 @@ public class HabitFrequencyTimingManager {
         return habitFrequencyTimingId;
     }
 
-    public void getHabitFrequencyTimingByIdFromDb(final MyCallback<HabitFrequencyTiming> myCallback, String id) {
-        databaseReferenceHabitFrequencyTimings.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+    public void getHabitFrequencyTimingByIdFromDb(final MyCallback<HabitFrequencyTiming> myCallback,
+                                                  String id) {
+        databaseReferenceHabitFrequencyTimings.child(id).addListenerForSingleValueEvent(
+                new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    HabitFrequencyTiming habitFrequencyTiming = dataSnapshot.getValue(HabitFrequencyTiming.class);
+                    HabitFrequencyTiming habitFrequencyTiming = dataSnapshot.getValue(
+                            HabitFrequencyTiming.class);
                     myCallback.onCallback(habitFrequencyTiming);
                 }
             }
