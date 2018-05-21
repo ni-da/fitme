@@ -122,8 +122,11 @@ public class ExecuteHabitActivity extends Main2Activity
         }
         final String finalResultValue = resultValue;
 
+//        new UserManager().updateUserScore(finalResultValue, habitId,
+//                new HabitManager().gethabitPriorityByHabitId(habitId));
+
         new UserManager().updateUserScore(finalResultValue, habitId,
-                new HabitManager().gethabitPriorityByHabitId(habitId));
+                1);
 
         Record record = new Record(null, result, today,
                 new UserManager().getCurrentUserIdFromDb(), habitId);

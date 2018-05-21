@@ -32,50 +32,41 @@ public class UserManager {
     }
 
     public void updateUserScore(final String result, String habitId, int priority) {
-        //todo: add bonus scoring!
         final int routineScore = 20;
         final int priorityBonus = 10;
         final int idealValueBonus = 40;
         final int[] totalScore = {20};
-
-        Log.w("ResultValue: ", result);
-
         // - ideal value
-        switch (habitId) {
-            case "-LC9ugzpF6S_Gvx5VL_M": //weight
-                final double weightResult = Double.valueOf(result);
-                getUserFromDb(new MyCallback<User>() {
-                    @Override
-                    public void onCallback(User user) {
-                        // toDo: calculate BMI
-                        if (weightResult == user.getWeight()+2 ||
-                                weightResult  == user.getWeight()-2 ||
-                                weightResult == user.getWeight()) {
-                            Log.w("Ideal weight!", Integer.toString(totalScore[0]));
-                            totalScore[0] += idealValueBonus;
-                            Log.w("Ideal score!", Integer.toString(totalScore[0]));
-                        }
+        if ("-LC9ugzpF6S_Gvx5VL_M".equals(habitId)) { //weight
+            final double weightResult = Double.valueOf(result);
+            getUserFromDb(new MyCallback<User>() {
+                @Override
+                public void onCallback(User user) {
+                    double bmi= calculateBMI(user.getHeight(), weightResult);
+                    if ((24.9 > bmi) && (18.5 < bmi)) {
+                        totalScore[0] += idealValueBonus;
                     }
-                });
-                break;
-            case "habitId3": //bp
-                String bpResult[]= result.split(";");
-                String bp1 = bpResult[0];
-                String bp2 = bpResult[1];
+                }
+            });
 
-                final double upperBpResult = Double.valueOf(bp1),
-                        lowerBpResult = Double.valueOf(bp2);
-                getUserFromDb(new MyCallback<User>() {
-                    @Override
-                    public void onCallback(User user) {
-                        if ((upperBpResult == user.getBegin_bp_upper()) &&
-                                (lowerBpResult == user.getBegin_bp_lower())) {
-                            totalScore[0] += idealValueBonus;
-                            Log.w("Ideal score!", Integer.toString(totalScore[0]));
-                        }
+        } else if ("habitId3".equals(habitId)) { // bp
+            String bpResult[] = result.split(";");
+            String bp1 = bpResult[0];
+            String bp2 = bpResult[1];
+
+            final double upperBpResult = Double.valueOf(bp1),
+                    lowerBpResult = Double.valueOf(bp2);
+            getUserFromDb(new MyCallback<User>() {
+                @Override
+                public void onCallback(User user) {
+                    if ((upperBpResult == user.getBegin_bp_upper()) &&
+                            (lowerBpResult == user.getBegin_bp_lower())) {
+                        totalScore[0] += idealValueBonus;
+                        Log.w("Ideal score!", Integer.toString(totalScore[0]));
                     }
-                });
-                break;
+                }
+            });
+
         }
         // - priority
         totalScore[0] = (0-priorityBonus) * priority + 60;
@@ -128,6 +119,10 @@ public class UserManager {
 
     public String getCurrentUserIdFromDb() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
+    public double calculateBMI(double height, double weight){
+        return ((weight / height / height)*10000);
     }
 }
 

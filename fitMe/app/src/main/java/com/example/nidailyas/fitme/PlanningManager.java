@@ -1,5 +1,7 @@
 package com.example.nidailyas.fitme;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,14 +35,18 @@ public class PlanningManager {
         });
     }
 
-    public void getPlanningByIdFromDb(final MyCallback<Planning> myCallback, String planningId) {
-        databaseReferencePlannings.child(planningId).addListenerForSingleValueEvent
+    public void getPlanningByIdFromDb(final MyCallback<Planning> myCallback, final String planningId) {
+        databaseReferencePlannings.child(planningId).addValueEventListener //addListenerForSingleValueEvent
                 (new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    Log.w("Planning", "NotFML!");
                     Planning planning = dataSnapshot.getValue(Planning.class);
+                    Log.w("getPlanningByIdFromDb: ", planning.getPlanningId());
                     myCallback.onCallback(planning);
+                }else {
+                    Log.w("Planning", "FML!");
                 }
             }
 
