@@ -133,6 +133,20 @@
                 android:layout_weight="1"
                 android:text="TextView"
                 android:visibility="gone"/>
+            <Button
+                android:id="@+id/button_withings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check with Withings"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/textView_withingsWeightResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0.0"
+                android:visibility="gone"/>
 
 
         </LinearLayout>

@@ -6,6 +6,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,8 @@ public class ExecuteHabitActivity extends Main2Activity
     private Sensor mStepDetectorSensor;
 
     private EditText editText_executeHabit_weight;
+    private Button button_withings;
+    private TextView textView_withingsWeightResult;
     private EditText editText_executeHabit_water;
     private LinearLayout linLayout_executeHabit_bp;
     private EditText editText_executeHabit_bp_U;
@@ -68,6 +71,8 @@ public class ExecuteHabitActivity extends Main2Activity
 
 
         editText_executeHabit_weight = findViewById(R.id.editText_executeHabit_weight);
+        button_withings = findViewById(R.id.button_withings);
+        textView_withingsWeightResult = findViewById(R.id.textView_withingsWeightResult);
         editText_executeHabit_water = findViewById(R.id.editText_executeHabit_water);
 
         linLayout_executeHabit_bp = findViewById(R.id.linLayout_executeHabit_bp);
@@ -82,9 +87,22 @@ public class ExecuteHabitActivity extends Main2Activity
             @Override
             public void onClick(View view) {
                 executeHabit();
-//todo:   show textview; what will the user earn by doing this habit!
+                //todo:   show textview; what will the user earn by doing this habit!
                 // a textviw is added.
-
+            }
+        });
+        button_withings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new WithingWeightApiManager(ExecuteHabitActivity.this).setConnection(new MyCallback<Double>() {
+                    @Override
+                    public void onCallback(Double res) {
+                        Log.w("NICE: ", Double.toString(res));
+                        textView_withingsWeightResult.setText(Double.toString(res));
+                        textView_withingsWeightResult.setVisibility(View.VISIBLE);
+                        button_withings.setEnabled(false);
+                    }
+                });
             }
         });
 
@@ -109,6 +127,7 @@ public class ExecuteHabitActivity extends Main2Activity
             case "-LC9ugzpF6S_Gvx5VL_M": //weight
                 result = editText_executeHabit_weight.getText().toString() + " kg";
                 resultValue = editText_executeHabit_weight.getText().toString();
+
                 break;
             case "habitId3": //bp
                 result = editText_executeHabit_bp_U.getText().toString() + ";" +
@@ -152,6 +171,8 @@ public class ExecuteHabitActivity extends Main2Activity
                         break;
                     case "Weight":
                         editText_executeHabit_weight.setVisibility(View.VISIBLE);
+                        button_withings.setVisibility(View.VISIBLE);
+                        //textView_withingsWeightResult.setVisibility(View.VISIBLE);
                         break;
                     case "Bp":
                         linLayout_executeHabit_bp.setVisibility(View.VISIBLE);
@@ -236,4 +257,3 @@ public class ExecuteHabitActivity extends Main2Activity
         mSensorManager.unregisterListener(this, mStepDetectorSensor);
     }
 }
-
