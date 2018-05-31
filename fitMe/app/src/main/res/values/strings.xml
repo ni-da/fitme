@@ -13,9 +13,9 @@
     <string name="date_view_set">Date of birth</string>
     <string name="hint_date_selected">00/00/0000</string>
     <string name="hint_dec">0.0</string>
-    <string name="weight">Weight</string>
+    <string name="idealWeight">Ideal weight</string>
     <string name="height">Height</string>
-    <string name="bloodpressure">Bloodpressure</string>
+    <string name="idealBloodpressure">Ideal bloodpressure</string>
     <string name="reset">Reset</string>
     <string name="save">Save</string>
     <string name="name">Name</string>
@@ -34,6 +34,7 @@
     <string name="step_detector">
          android.hardware.sensor.stepdetector
    </string>
+    <string name="bloodpressure">Bloodpressure</string>
 
     <string-array name="habit_names">
         <item>Select a habit</item>

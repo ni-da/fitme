@@ -199,7 +199,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/weight"
+                    android:text="@string/idealWeight"
                     android:id="@+id/textView_weight" />
 
                 <View
@@ -267,7 +267,7 @@
                     android:id="@+id/textView_bp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bloodpressure" />
+                    android:text="@string/idealBloodpressure" />
 
                 <View
                     android:layout_width="20dp"
@@ -293,9 +293,8 @@
                     android:hint="@string/hint_dec"
                     android:inputType="numberDecimal" />
             </LinearLayout>
-
-
         </TableRow>
+
 
         <TableRow
             android:id="@+id/tableRow7"
