@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.Date;
 
 public class ExecuteHabitActivity extends Main2Activity
@@ -27,7 +29,6 @@ public class ExecuteHabitActivity extends Main2Activity
     private Button button_startHabit;
     private int steps;
     private int value = -1;
-
 
     private TextView textView_steps;
     private SensorManager mSensorManager;
@@ -86,7 +87,7 @@ public class ExecuteHabitActivity extends Main2Activity
         button_startHabit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                executeHabit();
+                executeHabit(1);
                 //todo:   show textview; what will the user earn by doing this habit!
                 // a textviw is added.
             }
@@ -101,6 +102,7 @@ public class ExecuteHabitActivity extends Main2Activity
                         textView_withingsWeightResult.setText(Double.toString(res));
                         textView_withingsWeightResult.setVisibility(View.VISIBLE);
                         button_withings.setEnabled(false);
+                        executeHabit(8);
                     }
                 });
             }
@@ -108,11 +110,15 @@ public class ExecuteHabitActivity extends Main2Activity
 
     }
 
-    public void executeHabit() {
+    public void executeHabit(int source) {
         button_startHabit.setEnabled(false);
         String result = null;
         String resultValue = null;
-        findViewById(R.id.animation_view_star).setVisibility(View.VISIBLE);
+        LottieAnimationView lottieAnimationView;
+        lottieAnimationView = findViewById(R.id.animation_view_star);
+        lottieAnimationView.playAnimation();
+
+
         Date today = new Date();
         switch (habitId) {
             case "habitId2": //run
@@ -125,8 +131,14 @@ public class ExecuteHabitActivity extends Main2Activity
                         + String.valueOf(steps) + " steps";
                 break;
             case "-LC9ugzpF6S_Gvx5VL_M": //weight
-                result = editText_executeHabit_weight.getText().toString() + " kg";
-                resultValue = editText_executeHabit_weight.getText().toString();
+                if(source == 1){
+                    result = editText_executeHabit_weight.getText().toString() + " kg";
+                    resultValue = editText_executeHabit_weight.getText().toString();
+                }else if(source == 8){
+                    result = textView_withingsWeightResult.getText().toString() + " kg";
+                    resultValue = textView_withingsWeightResult.getText().toString();
+                }
+
 
                 break;
             case "habitId3": //bp

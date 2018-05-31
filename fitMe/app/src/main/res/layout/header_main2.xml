@@ -110,10 +110,10 @@
                 android:id="@+id/animation_view_star"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/star"
-                android:visibility="invisible" />
+                />
 
             <ImageView
                 android:id="@+id/imageView_star"
