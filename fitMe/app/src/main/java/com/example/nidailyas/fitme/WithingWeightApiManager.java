@@ -1,7 +1,6 @@
 package com.example.nidailyas.fitme;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
@@ -10,8 +9,9 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class WithingWeightApiManager {
     private static final String withingsURL = "http://api.health.nokia.com/measure?action=getmeas&" +
@@ -39,35 +39,47 @@ public class WithingWeightApiManager {
                 WithingsData withingsData = gson.fromJson(response, WithingsData.class);
                 Body body = withingsData.getBody();
 
-                Measuregrp measuregrp1 = body.getMeasuregrps().get(0);
 
-                // formatedate
-                Date date1 = formateIntToDate(measuregrp1.getDate());
+                List<Measuregrp> measuregrpsToday = new ArrayList<>();
+                for (int i = 0; i < body.getMeasuregrps().size(); i++) {
+                    if (new Date().getDay() == formateIntToDate(body.getMeasuregrps().get(i).getDate()).getDay()) {
+                        measuregrpsToday.add(body.getMeasuregrps().get(i));
+                    }
+                }
 
+                List<Measuregrp> measuregrpsCurHour = new ArrayList<>();
+                for (int i = 0; i < measuregrpsToday.size(); i++) {
+                    if (new Date().getHours() ==
+                            formateIntToDate(body.getMeasuregrps().get(i).getDate()).getHours()) {
 
-                //toDo: mag weg: 85-89
-                // print date
-                String dateAsText = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
-                        .format(date1);
-                Log.w("measuregrp1: ", dateAsText);
+                        measuregrpsCurHour.add(body.getMeasuregrps().get(i));
+                    }
+                }
 
-                // result
+                List<Measuregrp> measuregrpsCur2Min = new ArrayList<>();
+                for (int i = 0; i < measuregrpsCurHour.size(); i++) {
+                    if (new Date().getMinutes() ==
+                            formateIntToDate(body.getMeasuregrps().get(i).getDate()).getMinutes() ||
+                            new Date().getMinutes() - 1 ==
+                                    formateIntToDate(body.getMeasuregrps().get(i).getDate()).getMinutes() ||
+                            new Date().getMinutes() - 2 ==
+                                    formateIntToDate(body.getMeasuregrps().get(i).getDate()).getMinutes()
+                            ) {
 
-                com.example.nidailyas.fitme.Measure  measure1 = measuregrp1.getMeasures().get(0);
-                double result = formatResultValue(measure1.getValue(), measure1.getUnit());
-                myCallback.onCallback(result);
-
-
-                //toDo: mag weg: 96 - 98
-                // print result
-                Log.w("measuregrp1: ", Double.toString(result));
-
-
+                        measuregrpsCur2Min.add(body.getMeasuregrps().get(i));
+                    }
+                }
+                for (int i = 0; i < measuregrpsCur2Min.size(); i++) {
+                    for (Measure measure : measuregrpsCur2Min.get(i).getMeasures()) {
+                        if (measure.getType() == 1) {
+                            myCallback.onCallback(formatResultValue(measure.getValue(), measure.getUnit()));
+                        }
+                    }
+                }
             }
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.w("withings Error: ", "Something went wrong");
             }
         });
 

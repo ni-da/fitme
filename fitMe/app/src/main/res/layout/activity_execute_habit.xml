@@ -26,68 +26,79 @@
                 android:id="@+id/textView_habitTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:text="Hello there"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/textView_habitDesc"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:text="Hello there"
+                android:textAlignment="center"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView_pointsToEarn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:text="Earn 80 points!"
                 android:textSize="18sp" />
 
             <!--<ImageView-->
-                <!--android:id="@+id/imageView_smiely"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:src="@drawable/ic_sentiment_satisfied_black_24dp"-->
-                <!--android:visibility="gone" />-->
+            <!--android:id="@+id/imageView_smiely"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/ic_sentiment_satisfied_black_24dp"-->
+            <!--android:visibility="gone" />-->
 
             <EditText
+                android:id="@+id/editText_executeHabit_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:hint="Weight"
                 android:inputType="numberDecimal"
-                android:id="@+id/editText_executeHabit_weight"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <EditText
+                android:id="@+id/editText_executeHabit_water"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:hint="Water in liters"
                 android:inputType="numberDecimal"
-                android:id="@+id/editText_executeHabit_water"
-                android:visibility="gone"/>
+                android:visibility="gone" />
+
             <EditText
+                android:id="@+id/editText_executeHabit_run_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:hint="Duration in min"
                 android:inputType="numberDecimal"
-                android:id="@+id/editText_executeHabit_run_min"
-                android:visibility="gone"/>
+                android:visibility="gone" />
+
             <EditText
+                android:id="@+id/editText_executeHabit_run_km"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:hint="Distence in km's"
                 android:inputType="numberDecimal"
-                android:id="@+id/editText_executeHabit_run_km"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/linLayout_executeHabit_bp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone">
+
                 <TextView
                     android:id="@+id/textView_bp"
                     android:layout_width="wrap_content"
@@ -103,6 +114,7 @@
                     android:id="@+id/editText_executeHabit_bp_U"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:hint="@string/hint_dec"
                     android:inputType="numberDecimal" />
 
@@ -115,6 +127,7 @@
                     android:id="@+id/editText_executeHabit_bp_L"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:hint="@string/hint_dec"
                     android:inputType="numberDecimal" />
             </LinearLayout>
@@ -123,6 +136,7 @@
                 android:id="@+id/button_startHabit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="Mark done!"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -132,23 +146,43 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:visibility="gone"/>
+                android:visibility="gone" />
+
             <Button
                 android:id="@+id/button_withings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="Check with Withings"
-                app:layout_constraintStart_toStartOf="parent"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/button_withings_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Start measure with Withings"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view_loading_dots"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone"
+                app:lottie_autoPlay="false"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading_dots" />
+
             <TextView
                 android:id="@+id/textView_withingsWeightResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="0.0"
-                android:visibility="gone"/>
-
-
+                android:text="No records found! Make sure the scale is connected to the internet."
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>

@@ -5,8 +5,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class ExecuteHabitActivity extends Main2Activity
@@ -37,6 +39,7 @@ public class ExecuteHabitActivity extends Main2Activity
 
     private EditText editText_executeHabit_weight;
     private Button button_withings;
+    private Button button_withings_start;
     private TextView textView_withingsWeightResult;
     private EditText editText_executeHabit_water;
     private LinearLayout linLayout_executeHabit_bp;
@@ -44,6 +47,8 @@ public class ExecuteHabitActivity extends Main2Activity
     private EditText editText_executeHabit_bp_L;
     private EditText editText_executeHabit_run_km;
     private EditText editText_executeHabit_run_min;
+    private LottieAnimationView lottieAnimationViewLoading_dots;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +78,7 @@ public class ExecuteHabitActivity extends Main2Activity
 
         editText_executeHabit_weight = findViewById(R.id.editText_executeHabit_weight);
         button_withings = findViewById(R.id.button_withings);
+        button_withings_start = findViewById(R.id.button_withings_start);
         textView_withingsWeightResult = findViewById(R.id.textView_withingsWeightResult);
         editText_executeHabit_water = findViewById(R.id.editText_executeHabit_water);
 
@@ -92,22 +98,60 @@ public class ExecuteHabitActivity extends Main2Activity
                 // a textviw is added.
             }
         });
+
         button_withings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new WithingWeightApiManager(ExecuteHabitActivity.this).setConnection(new MyCallback<Double>() {
-                    @Override
-                    public void onCallback(Double res) {
-                        Log.w("NICE: ", Double.toString(res));
-                        textView_withingsWeightResult.setText(Double.toString(res));
-                        textView_withingsWeightResult.setVisibility(View.VISIBLE);
-                        button_withings.setEnabled(false);
-                        executeHabit(8);
-                    }
-                });
+
+                editText_executeHabit_weight.setVisibility(View.GONE);
+                button_startHabit.setVisibility(View.GONE);
+                button_withings.setVisibility(View.GONE);
+                textView_habitDesc.setText("Stand straight on the scale. Wait till it indicates sucess.");
+                button_withings_start.setVisibility(View.VISIBLE);
+
+
             }
         });
 
+        button_withings_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                button_withings_start.setEnabled(false);
+//                getValuesFromWithings();
+
+
+                lottieAnimationViewLoading_dots = findViewById(R.id.animation_view_loading_dots);
+                lottieAnimationViewLoading_dots.setVisibility(View.VISIBLE);
+                lottieAnimationViewLoading_dots.playAnimation();
+
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        getValuesFromWithings();
+                    }
+                }, 3000);   //40 seconds
+
+
+            }
+        });
+
+    }
+
+    private void getValuesFromWithings() {
+
+        lottieAnimationViewLoading_dots.setVisibility(View.GONE);
+        textView_withingsWeightResult.setVisibility(View.VISIBLE);
+
+        new WithingWeightApiManager(ExecuteHabitActivity.this).setConnection(new MyCallback<Double>() {
+            @Override
+            public void onCallback(Double res) {
+                DecimalFormat df2 = new DecimalFormat(".##");
+                df2.setRoundingMode(RoundingMode.DOWN);
+                textView_withingsWeightResult.setText(df2.format(res));
+                executeHabit(8);
+            }
+        });
     }
 
     public void executeHabit(int source) {
@@ -131,10 +175,10 @@ public class ExecuteHabitActivity extends Main2Activity
                         + String.valueOf(steps) + " steps";
                 break;
             case "-LC9ugzpF6S_Gvx5VL_M": //weight
-                if(source == 1){
+                if (source == 1) {
                     result = editText_executeHabit_weight.getText().toString() + " kg";
                     resultValue = editText_executeHabit_weight.getText().toString();
-                }else if(source == 8){
+                } else if (source == 8) {
                     result = textView_withingsWeightResult.getText().toString() + " kg";
                     resultValue = textView_withingsWeightResult.getText().toString();
                 }
