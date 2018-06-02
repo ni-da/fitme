@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.nidailyas.fitme">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,7 +21,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         >
         <activity android:name=".RegisterActivity">
             <intent-filter>
@@ -53,7 +55,8 @@
 
         <activity android:name=".SavingDummyData" />
         <activity android:name=".RecordsActivity" />
-        <activity android:name=".HabitsOverviewActivity"></activity>
+        <activity android:name=".HabitsOverviewActivity" />
+        <activity android:name=".TipsActivity"></activity>
     </application>
 
 </manifest>

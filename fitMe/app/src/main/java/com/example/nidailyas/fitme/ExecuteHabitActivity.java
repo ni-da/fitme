@@ -1,5 +1,6 @@
 package com.example.nidailyas.fitme;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -206,6 +207,18 @@ public class ExecuteHabitActivity extends Main2Activity
         Record record = new Record(null, result, today,
                 new UserManager().getCurrentUserIdFromDb(), habitId);
         new RecordManager().addRecordTodb(record);
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                showTips();
+            }
+        }, 1000);   //40 seconds
+    }
+
+    public void showTips() {
+        startActivity(new Intent(getApplicationContext(), TipsActivity.class));
     }
 
     public void showHabitInfo(final String habitId) {

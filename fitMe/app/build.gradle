@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.nidailyas.fitme"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -38,5 +38,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
     implementation 'com.google.code.gson:gson:2.4'
     implementation 'com.android.volley:volley:1.0.0'
+    implementation 'com.github.wenchaojiang:AndroidSwipeableCardStack:0.1.0'
 }
 apply plugin: 'com.google.gms.google-services'
