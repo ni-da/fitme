@@ -35,13 +35,14 @@
             android:layout_height="wrap_content"
             android:text="Fit me"
             android:textAlignment="center"
+            android:textColor="@color/blue_smalt"
             android:textSize="50dp" />
         <!--gray line-->
         <View
             android:layout_width="200dp"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:layout_gravity="center"
-            android:background="#c0c0c0" />
+            android:background="@color/blue_pacific" />
 
         <TextView
             android:id="@+id/textView_inapp_desc"
@@ -49,6 +50,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/textView_inapp_desc"
+            android:textColor="@color/blue_smalt"
             android:textSize="14sp" />
         <!--space-->
         <View
@@ -62,6 +64,7 @@
             android:textSize="20sp"
             android:text="Up Next ..."
             android:layout_gravity="center_horizontal"
+            android:textColor="@color/blue_smalt"
             android:layout_marginBottom="10dp" />
 
         <android.support.v7.widget.RecyclerView
@@ -94,6 +97,7 @@
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:background="@color/lightGray"
                 android:text="Records" />
 
 
@@ -103,7 +107,7 @@
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:background="#c0c0c0"
+                android:background="@color/lightGray"
                 android:src="@drawable/settings" />
         </RelativeLayout>
 
