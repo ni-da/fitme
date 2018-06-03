@@ -38,7 +38,7 @@ public class TipsActivity extends AppCompatActivity implements CardStack.CardEve
         cardAdapter.add(new TipPair("WATCH YOUR WEIGHT", getString(R.string.tipText_watchyourweight),
                 R.drawable.tip_weight_96));
         cardAdapter.add(new TipPair("DON'T STRESS", getString(R.string.topText_dontstress),
-                R.drawable.tip_yoga_96));
+                R.drawable.icon_yoga_96));
     }
 
     @Override

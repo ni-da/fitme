@@ -50,22 +50,28 @@ public class habitAdapter extends
                                                       }, habit1.getHabitId());
                                                       switch (habit1.getHabitName()) {
                                                           case "Run":
-                                                              holder.imgIcon.setImageResource(R.drawable.ic_directions_run_white_50dp);
+                                                              holder.imgIcon.setImageResource(R.drawable.icon_run_96);
                                                               break;
                                                           case "Walk":
-                                                              holder.imgIcon.setImageResource(R.drawable.ic_directions_walk_white_50dp);
+                                                              holder.imgIcon.setImageResource(R.drawable.icon_walk_96);
                                                               break;
                                                           case "Weight":
-                                                              holder.imgIcon.setImageResource(R.drawable.ic_scale);
+                                                              holder.imgIcon.setImageResource(R.drawable.tip_weight_96);
                                                               break;
                                                           case "Bp":
-                                                              holder.imgIcon.setImageResource(R.drawable.ic_bp);
+                                                              holder.imgIcon.setImageResource(R.drawable.icon_bp_96);
                                                               break;
                                                           case "Drink water":
-                                                              holder.imgIcon.setImageResource(R.drawable.ic_water_drop);
+                                                              holder.imgIcon.setImageResource(R.drawable.icon_waterdrop_96);
                                                               break;
                                                           case "yoga":
-                                                              holder.imgIcon.setImageResource(R.drawable.ic_yoga);
+                                                              holder.imgIcon.setImageResource(R.drawable.icon_yoga_96);
+                                                              break;
+                                                          case "Exercise":
+                                                              holder.imgIcon.setImageResource(R.drawable.icon_exercise_96);
+                                                              break;
+                                                          case "Pulse rate":
+                                                              holder.imgIcon.setImageResource(R.drawable.icon_pulserate_96);
                                                               break;
 
                                                       }
