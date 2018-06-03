@@ -161,6 +161,7 @@ public class ExecuteHabitActivity extends Main2Activity
         String resultValue = null;
         LottieAnimationView lottieAnimationView;
         lottieAnimationView = findViewById(R.id.animation_view_star);
+        lottieAnimationView.setVisibility(View.VISIBLE);
         lottieAnimationView.playAnimation();
 
 
@@ -214,7 +215,7 @@ public class ExecuteHabitActivity extends Main2Activity
             public void run() {
                 showTips();
             }
-        }, 1000);   //40 seconds
+        }, 2000);   //2 seconds
     }
 
     public void showTips() {

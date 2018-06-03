@@ -106,24 +106,29 @@
                 android:text="123456"
                 android:textSize="14sp" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animation_view_star"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:lottie_autoPlay="false"
-                app:lottie_loop="false"
-                app:lottie_rawRes="@raw/star"
-                />
+
+
+            <!--<com.airbnb.lottie.LottieAnimationView-->
+                <!--android:id="@+id/animation_view_star"-->
+                <!--android:layout_width="60dp"-->
+                <!--android:layout_height="60dp"-->
+                <!--app:lottie_autoPlay="false"-->
+                <!--app:lottie_loop="false"-->
+                <!--app:lottie_rawRes="@raw/star"-->
+                <!--android:visibility="gone"-->
+                <!--/>-->
 
             <ImageView
                 android:id="@+id/imageView_star"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:src="@drawable/star"
-                android:visibility="invisible"/>
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/icon_star_96" />
+
+
 
             <TextView
                 android:id="@+id/textView_addingScor50"
