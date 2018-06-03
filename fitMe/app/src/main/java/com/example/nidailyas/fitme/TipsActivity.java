@@ -1,8 +1,8 @@
 package com.example.nidailyas.fitme;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.wenchao.cardstack.CardStack;
@@ -26,19 +26,19 @@ public class TipsActivity extends AppCompatActivity implements CardStack.CardEve
         cardStack.setListener(this);
 
         cardStack.bringToFront();
-
-//        lottieAnimationViewlike = findViewById(R.id.animation_view_like);
-//        lottieAnimationViewlike.playAnimation();
-
-
     }
 
     private void initImages() {
         cardAdapter = new CardAdapter(getApplicationContext(), 0);
-        cardAdapter.add(R.drawable.camera);
-        cardAdapter.add(R.drawable.ic_yoga);
-        cardAdapter.add(R.drawable.star);
-        cardAdapter.add(R.drawable.profile_pic);
+
+        cardAdapter.add(new TipPair("EAT SMART", getString(R.string.tipText_eatsmart),
+                R.drawable.tip_eatsmart_96));
+        cardAdapter.add(new TipPair("GET MOVING", getString(R.string.tipText_getmoving),
+                R.drawable.tip_getmoving_96));
+        cardAdapter.add(new TipPair("WATCH YOUR WEIGHT", getString(R.string.tipText_watchyourweight),
+                R.drawable.tip_weight_96));
+        cardAdapter.add(new TipPair("DON'T STRESS", getString(R.string.topText_dontstress),
+                R.drawable.tip_yoga_96));
     }
 
     @Override
@@ -59,7 +59,8 @@ public class TipsActivity extends AppCompatActivity implements CardStack.CardEve
     @Override
     public void discarded(int mIndex, int direction) {
         if (cardAdapter.getCount() == mIndex) {
-            cardStack.setVisibility(View.GONE);
+//            cardStack.setVisibility(View.GONE);
+            startActivity(new Intent(getApplicationContext(), Main2Activity.class));
         }
     }
 

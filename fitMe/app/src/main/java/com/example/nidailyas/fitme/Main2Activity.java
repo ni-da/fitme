@@ -19,8 +19,6 @@ public class Main2Activity extends AppCompatActivity {
     private TextView textView_signatureName;
     private TextView textView_gold_coins_count;
     private TextView textView_gold_coins;
-    LottieAnimationView lottieAnimationView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +26,6 @@ public class Main2Activity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main2);
 
-        lottieAnimationView = findViewById(R.id.animation_view_loader);
-        lottieAnimationView.playAnimation();
 
         ViewGroup activity_main2 = findViewById(R.id.activity_main2);
         RecyclerView tasksList = findViewById(R.id.tasks_list);
