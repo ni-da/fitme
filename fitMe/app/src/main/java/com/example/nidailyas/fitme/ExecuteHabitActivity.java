@@ -131,7 +131,7 @@ public class ExecuteHabitActivity extends Main2Activity
                     public void run() {
                         getValuesFromWithings();
                     }
-                }, 3000);   //40 seconds
+                }, 5000);   //40 seconds
 
 
             }
